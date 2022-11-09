@@ -1,0 +1,17 @@
+{
+  "name": "starn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon src/internal/test/test.starn.ts",
+    "start": "nodemon "
+  },
+  "keywords": [],
+  "author": "João Victor Dos Santos",
+  "license": "ISC",
+  "dependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}
