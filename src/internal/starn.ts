@@ -12,7 +12,6 @@ export class Starn {
   socket: net.Server;
   topics: Array<string>;
   data: DataStarn;
-  // connection: ConnectStarn
 
   private sendMessage(message: string) {
     process.nextTick(() => this.event.emit("message", message));
@@ -32,24 +31,27 @@ export class Starn {
           const messages = this.data.stringToArray(data);
 
           for (let i = 0; i < messages.length - 1; i++) {
+
             const message = JSON.parse(messages[i]);
 
-            if (message.messageSendindType == "Get Topics") {
-              this.sendMessage(
-                JSON.stringify({
-                  topics: this.topics,
-                }).concat("\n")
-              );
-            }
+            switch(message.messageSendindType) {
 
-            if (message.messageSendindType == "Send Message") {
-              this.sendMessage(
-                JSON.stringify({
-                  message: message.message,
-                  time: message.time,
-                  topic: message.topic,
-                }).concat("\n")
-              );
+              case("Get Topics"):
+                this.sendMessage(
+                  JSON.stringify({
+                    topics: this.topics,
+                  }).concat("\n")
+                );
+
+              case("Send Message"):
+                this.sendMessage(
+                  JSON.stringify({
+                    message: message.message,
+                    time: message.time,
+                    topic: message.topic,
+                  }).concat("\n")
+                );
+
             }
           }
         });
