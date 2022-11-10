@@ -16,13 +16,12 @@ export class ClientStarn {
     getMessage(topic: string, callback: (data: any, time: number, topic: string) => void) {
     
         this.connection.on('data', data => {
-    
           const arrayData = this.data.stringToArray(data)
           
           for(let i = 0; i < arrayData.length - 1; i++) {
             
             const message = JSON.parse(arrayData[i])
-    
+            
             if(message.topic == topic) {
               callback(
                 message.message,
