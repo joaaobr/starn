@@ -24,6 +24,10 @@ export class SenderStarn {
             message: data,
         };
 
-        this.connection.write(JSON.stringify(message).concat('\n'));
+        this.connection.write(JSON.stringify(message).concat('\n'), err => {
+            if(err) throw err;
+        });
+
+        return true
     }
 }
