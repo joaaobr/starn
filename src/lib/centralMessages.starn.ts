@@ -5,7 +5,7 @@ import { DataStarn } from "./data.starn";
 import process from "process";
 import net from "net";
 
-export class Starn {
+export class CentralMessages {
   port: number;
   host?: string;
   event: EventEmitter;
