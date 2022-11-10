@@ -19,6 +19,6 @@ describe('is it possible to create a new sender', () => {
     })
 
     it('validate if is possible send message', () => {
-        expect(sender.sendMessage("A", "Hello")).toBe(true)
+        expect(sender.sendMessage("A", "Hello A")).toBe(true)
     })
 })

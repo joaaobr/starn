@@ -1,6 +1,6 @@
-import { ClientStarn } from "./src/internal/client.starn";
-import { ConnectStarn } from "./src/internal/connect.starn";
-import { SenderStarn } from "./src/internal/sender.starn";
-import { Starn } from "./src/internal/starn";
+import { ClientStarn } from "./src/lib/client.starn";
+import { ConnectStarn } from "./src/lib/connect.starn";
+import { SenderStarn } from "./src/lib/sender.starn";
+import { Starn } from "./src/lib/centralMessages.starn";
 
 export { ClientStarn, ConnectStarn, SenderStarn, Starn };

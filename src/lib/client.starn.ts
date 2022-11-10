@@ -4,23 +4,21 @@ import { Socket } from 'net'
 import { DataStarn } from "./data.starn";
 
 export class ClientStarn {
-    connection: Socket
-    data: DataStarn
+    connection: Socket;
+    data: DataStarn;
 
     constructor(dataConnection: ParametersConnectionStarn) {
-        this.connection = new ConnectStarn(dataConnection).connect()
-        this.data = new DataStarn()
+        this.connection = new ConnectStarn(dataConnection).connect();
+        this.data = new DataStarn();
 
     }
 
     getMessage(topic: string, callback: (data: any, time: number, topic: string) => void) {
-    
         this.connection.on('data', data => {
-          const arrayData = this.data.stringToArray(data)
+          const arrayData = this.data.stringToArray(data);
           
-          for(let i = 0; i < arrayData.length - 1; i++) {
-            
-            const message = JSON.parse(arrayData[i])
+          for(let i = 0; i < arrayData.length - 1; i++) {  
+            const message = JSON.parse(arrayData[i]);
             
             if(message.topic == topic) {
               callback(
