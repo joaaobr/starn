@@ -11,12 +11,11 @@ export class Starn {
   event: EventEmitter;
   socket: net.Server;
   topics: Array<string>;
-  data: DataStarn
+  data: DataStarn;
   // connection: ConnectStarn
 
-
-  private sendMessageToGetMessage(message: string) {
-    process.nextTick(() => this.event.emit('message', message));
+  private sendMessage(message: string) {
+    process.nextTick(() => this.event.emit("message", message));
   }
 
   constructor(Params: ParametersStarn) {
@@ -25,41 +24,40 @@ export class Starn {
     this.topics = Params.topics;
 
     this.event = new EventEmitter();
-    this.data = new DataStarn()
+    this.data = new DataStarn();
 
     this.socket = net
       .createServer(async (socket) => {
-        socket.on('data', async data => {
-          const messages = this.data.stringToArray(data)
-          
-          for(let i = 0; i < messages.length - 1; i++) {
-            const message = JSON.parse(messages[i])
-            
-            if(message.messageSendindType == "Get Topics") {
-              this.sendMessageToGetMessage(JSON.stringify({
-                topics: this.topics
-              }).concat('\n'))
+        socket.on("data", async (data) => {
+          const messages = this.data.stringToArray(data);
+
+          for (let i = 0; i < messages.length - 1; i++) {
+            const message = JSON.parse(messages[i]);
+
+            if (message.messageSendindType == "Get Topics") {
+              this.sendMessage(
+                JSON.stringify({
+                  topics: this.topics,
+                }).concat("\n")
+              );
             }
 
-            if(message.messageSendindType == 'Send Message') {
-              
-              this.sendMessageToGetMessage(JSON.stringify({
-                message: message.message,
-                time: message.time,
-                topic: message.topic
-              }).concat('\n'))
-
+            if (message.messageSendindType == "Send Message") {
+              this.sendMessage(
+                JSON.stringify({
+                  message: message.message,
+                  time: message.time,
+                  topic: message.topic,
+                }).concat("\n")
+              );
             }
           }
         });
 
-        for await (const data of on(this.event, 'message')) {
+        for await (const data of on(this.event, "message")) {
           socket.write(data[0]);
         }
-
       })
       .listen(this.port, this.host);
   }
-
-  
 }

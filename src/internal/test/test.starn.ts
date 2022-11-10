@@ -8,7 +8,7 @@ const starn = new Starn({
     topics: ["A", "B"] 
 });
 
-const sender = new SenderStarn( { connection:{ port: 2020, host: "localhost"} } )
+const sender = new SenderStarn( { connection: { port: 2020, host: "localhost"} } )
 
 sender.sendMessage("A", "Joao");
 sender.sendMessage("B", "Hello, Orelha");
