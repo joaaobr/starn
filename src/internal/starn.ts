@@ -40,7 +40,8 @@ export class Starn {
                 this.sendMessage(
                   JSON.stringify({
                     topics: this.topics,
-                  }).concat("\n")
+                  })
+                  .concat("\n")
                 );
 
               case("Send Message"):
@@ -49,7 +50,8 @@ export class Starn {
                     message: message.message,
                     time: message.time,
                     topic: message.topic,
-                  }).concat("\n")
+                  })
+                  .concat("\n")
                 );
 
             }

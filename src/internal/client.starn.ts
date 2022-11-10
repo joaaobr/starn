@@ -13,22 +13,22 @@ export class ClientStarn {
 
     }
 
-    getMessage(topic: string, callback: (data: any ) => void) {
+    getMessage(topic: string, callback: (data: any, time?: number, topic?: string) => void) {
     
         this.connection.on('data', data => {
     
-          const dataString = this.data.stringToArray(data)
+          const arrayData = this.data.stringToArray(data)
           
-          for(let i = 0; i < dataString.length - 1; i++) {
+          for(let i = 0; i < arrayData.length - 1; i++) {
             
-            const message = JSON.parse(dataString[i])
+            const message = JSON.parse(arrayData[i])
     
             if(message.topic == topic) {
-              callback({
-                message: message.message,
-                time: message.time,
-                topic: message.topic
-              })
+              callback(
+                message.message,
+                message.time,
+                message.topic
+              )
             }
     
           }
