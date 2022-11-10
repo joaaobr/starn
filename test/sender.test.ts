@@ -11,7 +11,7 @@ describe('is it possible to create a new sender', () => {
         }, 
         typeMessage: 'string'
     })
-    })
+    }, 1000)
 
     it('validate if sender properties exist', () => {
         expect(sender).toHaveProperty("connection")

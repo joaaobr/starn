@@ -22,14 +22,14 @@ export class SenderStarn {
 
         if(this.type) this.data.typesEquals(data, this.type);
 
-        const message: DataSender = {
+        const messageToBeSent: DataSender = {
             topic, 
             messageSendindType: "Send Message", 
             time: Date.now(),
             message: data,
         };
 
-        this.connection.write(JSON.stringify(message).concat('\n'), err => {
+        this.connection.write(JSON.stringify(messageToBeSent).concat('\n'), err => {
             if(err) throw err;
         });
 

@@ -12,8 +12,8 @@ export class CentralMessages {
   topics: Array<string>;
   data: DataStarn;
 
-  sendMessage(message: string) {
-    process.nextTick(() => this.event.emit("message", message));
+  sendMessage(message: object) {
+    process.nextTick(() => this.event.emit("message", JSON.stringify(message).concat("\n")));
   }
 
   constructor(Params: ParametersStarn) {
@@ -36,23 +36,16 @@ export class CentralMessages {
             switch(message.messageSendindType) {
 
               case("Validate Topic"):
-                this.sendMessage(
-                  JSON.stringify({
+                this.sendMessage({
                     topics: this.topics,
-                  })
-                  .concat("\n")
-                );
+                  });
 
               case("Send Message"):
-                this.sendMessage(
-                  JSON.stringify({
+                this.sendMessage({
                     message: message.message,
                     time: message.time,
                     topic: message.topic,
-                  })
-                  .concat("\n")
-                );
-
+                });
             }
           }
         });
@@ -60,6 +53,7 @@ export class CentralMessages {
         for await (const data of on(this.event, "message")) {
           socket.write(data[0]);
         }
+        
       })
       .listen(this.port, this.host);
   }

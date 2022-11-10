@@ -9,7 +9,6 @@ export class ConnectStarn {
       .on("error", err => {
         throw err;
       });
-
   }
 
   connect(): Socket {
