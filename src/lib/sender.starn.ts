@@ -2,20 +2,25 @@ import { Socket } from "net";
 import { ParametersSender, DataSender } from "./interfaces.starn";
 import { ConnectStarn } from "./connect.starn";
 import { DataStarn } from "./data.starn";
+import { TopicsStarn } from "./topics.starn";
 
 export class SenderStarn {
     connection: Socket;
     data: DataStarn;
     type?: string;
+    topics: TopicsStarn
 
     constructor(params: ParametersSender) {
         this.connection = new ConnectStarn(params.connection).connect();
         this.type = params.typeMessage;
         this.data = new DataStarn();
+        this.topics = new TopicsStarn();
     }
 
     sendMessage(topic: any, data: any) {
-        if(this.type) this.data.typesEquals(data, this.type)
+        this.topics.getTopics(topic, this.connection);
+
+        if(this.type) this.data.typesEquals(data, this.type);
 
         const message: DataSender = {
             topic, 
@@ -28,6 +33,6 @@ export class SenderStarn {
             if(err) throw err;
         });
 
-        return true
+        return true;
     }
 }

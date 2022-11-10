@@ -25,12 +25,12 @@ export class CentralMessages {
     this.data = new DataStarn();
 
     this.socket = net
-      .createServer(async (socket) => {
-        socket.on("data", async (data) => {
+      .createServer(async socket => {
+        
+        socket.on("data", data => {
           const messages = this.data.stringToArray(data);
 
           for (let i = 0; i < messages.length - 1; i++) {
-
             const message = JSON.parse(messages[i]);
 
             switch(message.messageSendindType) {
