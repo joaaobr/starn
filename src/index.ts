@@ -7,5 +7,5 @@ export {
     ClientStarn,
     ConnectStarn,
     SenderStarn,
-    Starn
+    Starn,
 }

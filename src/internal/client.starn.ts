@@ -13,7 +13,7 @@ export class ClientStarn {
 
     }
 
-    getMessage(topic: string, callback: (data: any, time?: number, topic?: string) => void) {
+    getMessage(topic: string, callback: (data: any, time: number, topic: string) => void) {
     
         this.connection.on('data', data => {
     

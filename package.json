@@ -2,10 +2,10 @@
   "name": "starn",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
     "test": "nodemon src/internal/test/test.starn.ts",
-    "start": "tsc src/index.ts"
+    "start": "nodemon src/index.ts"
   },
   "keywords": [],
   "author": "João Victor Dos Santos",
