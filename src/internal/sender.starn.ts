@@ -4,14 +4,14 @@ import { ConnectStarn } from "./connect.starn";
 import { DataStarn } from "./data.starn";
 
 export class SenderStarn {
-    connection: Socket
-    data: DataStarn
-    type?: string
+    connection: Socket;
+    data: DataStarn;
+    type?: string;
 
     constructor(params: ParametersSender) {
-        this.connection = new ConnectStarn(params.connection).connect()
-        this.type = params.typeMessage
-        this.data = new DataStarn()
+        this.connection = new ConnectStarn(params.connection).connect();
+        this.type = params.typeMessage;
+        this.data = new DataStarn();
     }
 
     sendMessage(topic: any, data: any) {
@@ -21,9 +21,9 @@ export class SenderStarn {
             topic, 
             messageSendindType: 'Send Message', 
             time: Date.now(),
-            message: data
-        }
+            message: data,
+        };
 
-        this.connection.write(this.data.objectToString(message).concat('\n'))
+        this.connection.write(JSON.stringify(message).concat('\n'));
     }
 }
