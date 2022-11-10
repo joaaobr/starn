@@ -19,7 +19,7 @@ export class SenderStarn {
 
         const message: DataSender = {
             topic, 
-            messageSendindType: 'Send Message', 
+            messageSendindType: "Send Message", 
             time: Date.now(),
             message: data,
         };
