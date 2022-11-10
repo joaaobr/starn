@@ -1,5 +1,4 @@
 import { ParametersStarn } from "./interfaces.starn";
-import { ConnectStarn } from "./connect.starn";
 import { EventEmitter, on } from "events";
 import { DataStarn } from "./data.starn";
 import process from "process";
@@ -13,7 +12,7 @@ export class CentralMessages {
   topics: Array<string>;
   data: DataStarn;
 
-  private sendMessage(message: string) {
+  sendMessage(message: string) {
     process.nextTick(() => this.event.emit("message", message));
   }
 
@@ -36,7 +35,7 @@ export class CentralMessages {
 
             switch(message.messageSendindType) {
 
-              case("Get Topics"):
+              case("Validate Topic"):
                 this.sendMessage(
                   JSON.stringify({
                     topics: this.topics,

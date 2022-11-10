@@ -1,6 +1,6 @@
 import { CentralMessages } from "../index"
 
-describe('is it possible to create a new starn', () => {
+describe('is it possible to create a new Central Messages', () => {
     let centralMessages: CentralMessages
 
     beforeAll(() => {

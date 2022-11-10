@@ -1,7 +1,7 @@
 import { SenderStarn } from "../index"
 import { ClientStarn } from "../index"
 
-describe('is it possible to create a new sender', () => {
+describe('is it possible to create a new client', () => {
     let sender: SenderStarn
     let client: ClientStarn
 
