@@ -20,7 +20,7 @@ describe('is it possible to create a new client', () => {
         sender.sendMessage("A", "Hello A")
         sender.sendMessage("B", "Hello B")
         sender.sendMessage("C", "Hello C")
-    }, 1000)
+    }, 5000)
 
     it('validate if client properties exist', () => {
         expect(client).toHaveProperty("connection")

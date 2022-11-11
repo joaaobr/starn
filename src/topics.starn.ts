@@ -1,5 +1,6 @@
 import { Socket } from "net";
 import { DataStarn } from "./data.starn";
+import { TopicErros } from "./errors/topic.erros";
 
 export class TopicsStarn {
     isTopic(topics: Array<string>, topic: string) {
@@ -24,7 +25,7 @@ export class TopicsStarn {
                 const message = JSON.parse(dataArray[i])
 
                 if(message.topics && !this.isTopic(message.topics, topic)) {
-                    throw new Error(`topic ${topic} is not valid`);
+                    return new TopicErros(topic);
                 }
             }
         })
