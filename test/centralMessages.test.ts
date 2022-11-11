@@ -16,7 +16,6 @@ describe('is it possible to create a new Central Messages', () => {
 		expect(centralMessages).toHaveProperty('host');
 		expect(centralMessages).toHaveProperty('socket');
 		expect(centralMessages).toHaveProperty('topics');
-		expect(centralMessages).toHaveProperty('data');
 	});
 
 	it('validate if properties have their true values', () => {

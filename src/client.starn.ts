@@ -1,16 +1,17 @@
+import type {Params} from './types/standard-params';
+import type {DataSender} from './types/data-sender';
+import type {Socket} from 'net';
+
 import {ConnectStarn} from './connect.starn';
 import {DataStarn} from './data.starn';
 import {TopicsStarn} from './topics.starn';
-
-import type {ParametersConnectionStarn, DataSender} from './interfaces.starn';
-import type {Socket} from 'net';
 
 export class ClientStarn {
 	private static readonly data: DataStarn = new DataStarn();
 	connection: Socket;
 	topics: TopicsStarn;
 
-	constructor(dataConnection: ParametersConnectionStarn) {
+	constructor(dataConnection: Params) {
 		this.connection = new ConnectStarn(dataConnection).connect();
 		this.topics = new TopicsStarn();
 	}

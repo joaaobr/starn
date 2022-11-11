@@ -1,5 +1,5 @@
 import type {Socket} from 'net';
-import type {DataSender} from './interfaces.starn';
+import type {DataSender} from './types/data-sender';
 
 import {DataStarn} from './data.starn';
 import {TopicErros} from './errors/topic.erros';

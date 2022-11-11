@@ -1,17 +1,15 @@
 import {TypesErros} from './errors/data.erros';
-import type {DataSender} from './interfaces.starn';
+import type {DataSender} from './types/data-sender';
 
 export class DataStarn {
 	typesEquals(data: any, type: string) {
-		if (typeof (data) !== type) {
+		if (typeof data !== type) {
 			return new TypesErros(data, type);
 		}
 	}
 
 	stringToArray(data: Buffer) {
-		return data
-			.toString()
-			.split('\n');
+		return data.toString().split('\n');
 	}
 
 	parse(data: string): DataSender {

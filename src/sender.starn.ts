@@ -1,10 +1,9 @@
 import type {Socket} from 'net';
-import type {
-	ParametersSender,
-	DataSender,
-	Message,
-	ArrayMessage,
-} from './interfaces.starn';
+import type {ParametersSender} from './types/parameters-sender';
+import type {DataSender} from './types/data-sender';
+import type {Message} from './types/message';
+import type {ArrayMessage} from './types/array-message';
+
 import {ConnectStarn} from './connect.starn';
 import {DataStarn} from './data.starn';
 import {TopicsStarn} from './topics.starn';
