@@ -1,4 +1,4 @@
-import type {Message} from '../interfaces.starn';
+import type {Message} from '../types/message';
 import {Errors} from './erros';
 
 export class TypesErros {
