@@ -1,10 +1,10 @@
-import {SenderStarn} from '../index';
+import {Sender} from '../index';
 
 describe('is it possible to create a new sender', () => {
-	let sender: SenderStarn;
+	let sender: Sender;
 
 	beforeAll(() => {
-		sender = new SenderStarn({
+		sender = new Sender({
 			port: 2020,
 			host: 'localhost',
 			typeMessage: 'string',
@@ -14,7 +14,6 @@ describe('is it possible to create a new sender', () => {
 
 	it('validate if sender properties exist', () => {
 		expect(sender).toHaveProperty('connection');
-		expect(sender).toHaveProperty('data');
 	});
 
 	it('validate if is possible send message', () => {

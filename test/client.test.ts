@@ -1,12 +1,12 @@
-import {SenderStarn} from '../index';
+import {Sender} from '../index';
 import {ClientStarn} from '../index';
 
 describe('is it possible to create a new client', () => {
-	let sender: SenderStarn;
+	let sender: Sender;
 	let client: ClientStarn;
 
 	beforeAll(() => {
-		sender = new SenderStarn({
+		sender = new Sender({
 			port: 2020,
 			host: 'localhost',
 			typeMessage: 'string',
