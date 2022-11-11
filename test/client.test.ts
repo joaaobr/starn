@@ -1,48 +1,43 @@
-import { SenderStarn } from "../index"
-import { ClientStarn } from "../index"
+import {SenderStarn} from '../index';
+import {ClientStarn} from '../index';
 
 describe('is it possible to create a new client', () => {
-    let sender: SenderStarn
-    let client: ClientStarn
+	let sender: SenderStarn;
+	let client: ClientStarn;
 
-    beforeAll(() => {
-        sender = new SenderStarn({
-            connection: {
-                port: 2020,
-                host: "localhost",
-                
-            }, 
-            typeMessage: 'string',
-        })
+	beforeAll(() => {
+		sender = new SenderStarn({
+			port: 2020,
+			host: 'localhost',
+			typeMessage: 'string',
+		});
 
-        client = new ClientStarn({ port: 2020, host: "localhost" })
-        
-        sender.sendMessage("A", "Hello A")
-        sender.sendMessage("B", "Hello B")
-        sender.sendMessage("C", "Hello C")
-    }, 5000)
+		client = new ClientStarn({port: 2020, host: 'localhost'});
 
-    it('validate if client properties exist', () => {
-        expect(client).toHaveProperty("connection")
-        expect(client).toHaveProperty("data")
-    })
+		sender.sendMessage('A', 'Hello A');
+		sender.sendMessage('B', 'Hello B');
+		sender.sendMessage('C', 'Hello C');
+	});
 
-    it('validate if data of topics were sending', () => {
-        client.getMessage("A", (data, time, topic) => {
-            expect(data).toBe("Hello A")
-            expect(topic).toBe("A")
-        })
+	it('validate if client properties exist', () => {
+		expect(client).toHaveProperty('connection');
+		expect(client).toHaveProperty('data');
+	});
 
-        client.getMessage("B", (data, time, topic) => {
-            expect(data).toBe("Hello B")
-            expect(topic).toBe("B")
-        })
+	it('validate if data of topics were sending', () => {
+		client.getMessage('A', (data, time, topic) => {
+			expect(data).toBe('Hello A');
+			expect(topic).toBe('A');
+		});
 
-        client.getMessage("C", (data, time, topic) => {
-            expect(data).toBe("Hello C")
-            expect(topic).toBe("C")
-        })
-    })
+		client.getMessage('B', (data, time, topic) => {
+			expect(data).toBe('Hello B');
+			expect(topic).toBe('B');
+		});
 
-
-})
+		client.getMessage('C', (data, time, topic) => {
+			expect(data).toBe('Hello C');
+			expect(topic).toBe('C');
+		});
+	});
+});

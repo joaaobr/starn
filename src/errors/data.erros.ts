@@ -1,9 +1,12 @@
-import { Errors } from "./erros";
+import type {Message} from '../interfaces.starn';
+import {Errors} from './erros';
 
 export class TypesErros {
-    constructor(data: any, type: string) {
-        const message = `type of ${data} is different ${type}.`
+	message: string;
 
-        throw new Errors("TypeError: ", message);
-    }
+	constructor(data: string, type: string) {
+		this.message = `type of ${data} is different ${type}.`;
+
+		throw new Errors('TypeError: ', this.message);
+	}
 }

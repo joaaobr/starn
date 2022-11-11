@@ -1,17 +1,17 @@
 export class Errors extends Error {
-    foo?: string;
+	foo?: string;
 
-    constructor(typeError: string, message: string, foo?: string, ...params: any) {
+	constructor(typeError: string, message: string, foo?: string, ...params: any) {
+		super(...params);
 
-      super(...params);
+		if (Error.captureStackTrace) {
+			Error.captureStackTrace(this, Errors);
+		}
 
-      if (Error.captureStackTrace) {
-        Error.captureStackTrace(this, Errors);
-      }
-  
-      this.name = typeError.concat(message);
+		this.name = typeError.concat(message);
 
-    
-      if(foo) this.foo = foo;
-    }
+		if (foo) {
+			this.foo = foo;
+		}
+	}
 }

@@ -1,36 +1,40 @@
-import { Socket } from "net";
-import { DataStarn } from "./data.starn";
-import { TopicErros } from "./errors/topic.erros";
+import type {Socket} from 'net';
+import type {DataSender} from './interfaces.starn';
+
+import {DataStarn} from './data.starn';
+import {TopicErros} from './errors/topic.erros';
 
 export class TopicsStarn {
-    isTopic(topics: Array<string>, topic: string) {
-        for(const tpc of topics) {
-            if(tpc == topic) return true
-        }
+	isTopic(topics: string[], topic: string) {
+		for (const tpc of topics) {
+			if (tpc === topic) {
+				return true;
+			}
+		}
 
-        return false;
-    }
-    getTopics(topic: string, connection: Socket) {
-        const dataStarn = new DataStarn()
+		return false;
+	}
 
-        connection.write(JSON.stringify({
-            messageSendindType: "Validate Topic"
-        })
-        .concat('\n'));
+	getTopics(topic: string, connection: Socket) {
+		const dataStarn = new DataStarn();
 
-        connection.on('data', data => {
-            const dataArray = dataStarn.stringToArray(data)
+		connection.write(JSON.stringify({
+			messageSendindType: 'Validate Topic',
+		})
+			.concat('\n'));
 
-            for(let i = 0; i < dataArray.length - 1; i++) {
-                const message = JSON.parse(dataArray[i])
+		connection.on('data', data => {
+			const dataArray = dataStarn.stringToArray(data);
 
-                if(message.topics && !this.isTopic(message.topics, topic)) {
-                    return new TopicErros(topic);
-                }
-            }
-        })
+			for (let i = 0; i < dataArray.length - 1; i++) {
+				const message: DataSender = dataStarn.parse(dataArray[i]);
 
-        return true;
-    }
+				if (message.topics && !this.isTopic(message.topics, topic)) {
+					return new TopicErros(topic);
+				}
+			}
+		});
 
+		return true;
+	}
 }

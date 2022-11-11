@@ -1,29 +1,34 @@
-interface ParametersStarn {
-  port: number;
-  host?: string;
-  topics: Array<string>;
-}
+type Message = string | Buffer | number | Record<string, unknown>;
+type ArrayMessage = Message[];
 
-interface ParametersConnectionStarn {
-  port: number;
-  host?: string;
-}
+type ParametersStarn = {
+	port: number;
+	host?: string;
+	topics: string[];
+};
 
-interface ParametersSender {
-  connection: ParametersConnectionStarn;
-  typeMessage?: 'string' | 'array' | 'object' | 'buffer'
-}
+type ParametersConnectionStarn = {
+	port: number;
+	host?: string;
+};
 
-interface DataSender {
-  message: any;
-  time: number;
-  messageSendindType: string;
-  topic: string;
-}
+type ParametersSender = {
+	typeMessage?: 'string' | 'array' | 'object' | 'buffer';
+} & ParametersConnectionStarn;
 
-export {
-  ParametersStarn,
-  ParametersConnectionStarn,
-  ParametersSender,
-  DataSender 
+type DataSender = {
+	message: Message | ArrayMessage;
+	time: number;
+	messageSendindType: string;
+	topic: string;
+	topics?: string[];
+};
+
+export type {
+	ParametersStarn,
+	ParametersConnectionStarn,
+	ParametersSender,
+	DataSender,
+	Message,
+	ArrayMessage,
 };

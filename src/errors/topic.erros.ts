@@ -1,9 +1,11 @@
-import { Errors } from "./erros";
+import {Errors} from './erros';
 
 export class TopicErros {
-    constructor(topic: string) {
-        const message = `topic ${topic} is not valid.`;
-        
-        throw new Errors("TopicError: ", message);
-    }
+	message: string;
+
+	constructor(topic: string) {
+		this.message = `topic ${topic} is not valid.`;
+
+		throw new Errors('TopicError: ', this.message);
+	}
 }
