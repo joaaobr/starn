@@ -21,7 +21,6 @@ describe('is it possible to create a new client', () => {
 
 	it('validate if client properties exist', () => {
 		expect(client).toHaveProperty('connection');
-		expect(client).toHaveProperty('data');
 	});
 
 	it('validate if data of topics were sending', () => {

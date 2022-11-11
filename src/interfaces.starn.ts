@@ -19,7 +19,7 @@ type ParametersSender = {
 type DataSender = {
 	message: Message | ArrayMessage;
 	time: number;
-	messageSendindType: string;
+	messageSendindType: 'Send Message' | 'Validate Topic';
 	topic: string;
 	topics?: string[];
 };

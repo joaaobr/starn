@@ -29,13 +29,13 @@ export class CentralMessages {
 						const message = this.data.parse(messages[i]);
 
 						switch (message.messageSendindType) {
-							case ('Validate Topic'):
+							case 'Validate Topic':
 								this.sendMessage({
 									topics: this.topics,
 								});
 								break;
 
-							case ('Send Message'):
+							case 'Send Message':
 								this.sendMessage({
 									message: message.message,
 									time: message.time,
@@ -56,7 +56,9 @@ export class CentralMessages {
 			.listen(this.port, this.host);
 	}
 
-	sendMessage(message: Record<string, unknown>) {
-		process.nextTick(() => this.event.emit('message', JSON.stringify(message).concat('\n')));
+	private sendMessage(message: Record<string, unknown>): void {
+		process.nextTick(() =>
+			this.event.emit('message', JSON.stringify(message).concat('\n')),
+		);
 	}
 }

@@ -5,7 +5,7 @@ import {DataStarn} from './data.starn';
 import {TopicErros} from './errors/topic.erros';
 
 export class TopicsStarn {
-	isTopic(topics: string[], topic: string) {
+	private static isTopic(topics: string[], topic: string): boolean {
 		for (const tpc of topics) {
 			if (tpc === topic) {
 				return true;
@@ -15,13 +15,14 @@ export class TopicsStarn {
 		return false;
 	}
 
-	getTopics(topic: string, connection: Socket): boolean {
+	validateTopic(topic: string, connection: Socket): boolean {
 		const dataStarn = new DataStarn();
 
-		connection.write(JSON.stringify({
-			messageSendindType: 'Validate Topic',
-		})
-			.concat('\n'));
+		connection.write(
+			JSON.stringify({
+				messageSendindType: 'Validate Topic',
+			}).concat('\n'),
+		);
 
 		connection.on('data', data => {
 			const dataArray = dataStarn.stringToArray(data);
@@ -29,7 +30,7 @@ export class TopicsStarn {
 			for (let i = 0; i < dataArray.length - 1; i++) {
 				const message: DataSender = dataStarn.parse(dataArray[i]);
 
-				if (message.topics && !this.isTopic(message.topics, topic)) {
+				if (message.topics && !TopicsStarn.isTopic(message.topics, topic)) {
 					return new TopicErros(topic);
 				}
 			}
