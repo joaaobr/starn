@@ -1,13 +1,17 @@
-import type {DataSender, ParametersStarn} from './interfaces.starn';
+import type {DataSender, ParametersStarn} from '../interfaces.starn';
 import {EventEmitter, on} from 'events';
-import {DataStarn} from './data.starn';
+import {DataStarn} from '../data.starn';
 import process from 'process';
 import net from 'net';
+import {SendMessage} from './send-message';
+import {GetMessage} from './get-message';
 
 export class CentralMessages {
+	private static readonly send: SendMessage = new SendMessage();
+	private static readonly get: GetMessage = new GetMessage(CentralMessages.send.getEvent());
+	private static readonly event: EventEmitter = new EventEmitter();
 	port: number;
 	host?: string;
-	event: EventEmitter;
 	socket: net.Server;
 	topics: string[];
 	data: DataStarn;
@@ -15,7 +19,6 @@ export class CentralMessages {
 	constructor(Params: ParametersStarn) {
 		this.port = Params.port;
 		this.host = Params.host;
-		this.event = new EventEmitter();
 		this.topics = Params.topics;
 
 		this.data = new DataStarn();
@@ -30,13 +33,13 @@ export class CentralMessages {
 
 						switch (message.messageSendindType) {
 							case 'Validate Topic':
-								this.sendMessage({
+								CentralMessages.send.sendEventMessage({
 									topics: this.topics,
 								});
 								break;
 
 							case 'Send Message':
-								this.sendMessage({
+								CentralMessages.send.sendEventMessage({
 									message: message.message,
 									time: message.time,
 									topic: message.topic,
@@ -49,16 +52,8 @@ export class CentralMessages {
 					}
 				});
 
-				for await (const data of on(this.event, 'message')) {
-					socket.write(data[0]);
-				}
+				await CentralMessages.get.getEventMessage(socket);
 			})
 			.listen(this.port, this.host);
-	}
-
-	private sendMessage(message: Record<string, unknown>): void {
-		process.nextTick(() =>
-			this.event.emit('message', JSON.stringify(message).concat('\n')),
-		);
 	}
 }

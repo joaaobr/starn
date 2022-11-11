@@ -14,7 +14,6 @@ describe('is it possible to create a new Central Messages', () => {
 	it('validate if Starn properties exist', () => {
 		expect(centralMessages).toHaveProperty('port');
 		expect(centralMessages).toHaveProperty('host');
-		expect(centralMessages).toHaveProperty('event');
 		expect(centralMessages).toHaveProperty('socket');
 		expect(centralMessages).toHaveProperty('topics');
 		expect(centralMessages).toHaveProperty('data');
