@@ -15,7 +15,7 @@ export class TopicsStarn {
 		return false;
 	}
 
-	getTopics(topic: string, connection: Socket) {
+	getTopics(topic: string, connection: Socket): boolean {
 		const dataStarn = new DataStarn();
 
 		connection.write(JSON.stringify({

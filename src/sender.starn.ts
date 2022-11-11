@@ -17,7 +17,7 @@ export class SenderStarn {
 		this.topics = new TopicsStarn();
 	}
 
-	sendMessage(topic: string, data: Message | ArrayMessage) {
+	sendMessage(topic: string, data: Message | ArrayMessage): boolean {
 		this.topics.getTopics(topic, this.connection);
 
 		if (this.type) {
