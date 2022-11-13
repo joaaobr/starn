@@ -19,7 +19,7 @@ export class Sender {
 		this.connection = new ConnectStarn({
 			port: params.port,
 			host: params.host,
-		}).connect();
+		}).getConnection();
 		this.type = params.typeMessage;
 		this.topics = new TopicsStarn();
 	}

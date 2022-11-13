@@ -14,7 +14,7 @@ export class ConnectStarn {
 		);
 	}
 
-	connect(): Socket {
+	getConnection(): Socket {
 		return this.connection;
 	}
 }

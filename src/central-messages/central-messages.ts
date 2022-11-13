@@ -4,6 +4,7 @@ import {DataStarn} from '../data.starn';
 import net from 'net';
 import {SendMessage} from './send-message';
 import {GetMessage} from './get-message';
+import {MessageMenager} from './message-manager';
 
 export class CentralMessages {
 	private static readonly send: SendMessage = new SendMessage();
@@ -12,6 +13,8 @@ export class CentralMessages {
 	);
 
 	private static readonly data: DataStarn = new DataStarn();
+	private static readonly messageMenager: MessageMenager = new MessageMenager();
+
 	port: number;
 	host?: string;
 	socket: net.Server;
@@ -21,35 +24,11 @@ export class CentralMessages {
 		this.port = Params.port;
 		this.host = Params.host;
 		this.topics = Params.topics;
+		CentralMessages.messageMenager.setTopics(this.topics);
 
 		this.socket = net
 			.createServer(async socket => {
-				socket.on('data', data => {
-					const messages = CentralMessages.data.stringToArray(data);
-
-					for (let i = 0; i < messages.length - 1; i++) {
-						const message = CentralMessages.data.parse(messages[i]);
-
-						switch (message.messageSendindType) {
-							case 'Validate Topic':
-								CentralMessages.send.sendEventMessage({
-									topics: this.topics,
-								});
-								break;
-
-							case 'Send Message':
-								CentralMessages.send.sendEventMessage({
-									message: message.message,
-									time: message.time,
-									topic: message.topic,
-								});
-								break;
-
-							default:
-								break;
-						}
-					}
-				});
+				CentralMessages.messageMenager.messageMenager(socket);
 
 				await CentralMessages.get.getEventMessage(socket);
 			})

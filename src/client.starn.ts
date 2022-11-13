@@ -12,7 +12,7 @@ export class ClientStarn {
 	topics: TopicsStarn;
 
 	constructor(dataConnection: Params) {
-		this.connection = new ConnectStarn(dataConnection).connect();
+		this.connection = new ConnectStarn(dataConnection).getConnection();
 		this.topics = new TopicsStarn();
 	}
 
