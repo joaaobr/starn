@@ -10,6 +10,16 @@ export class ConnectedTopics {
 		}
 	}
 
+	topicIsConnected(topic: string): boolean {
+		for (const tcp of this.topicsConnected) {
+			if (tcp.topic === topic) {
+				return Boolean(tcp.connected);
+			}
+		}
+
+		return false;
+	}
+
 	addTopicConnected(topic: string): void {
 		for (const tcp of this.topicsConnected) {
 			if (tcp.topic === topic) {

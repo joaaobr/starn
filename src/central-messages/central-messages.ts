@@ -3,7 +3,7 @@ import {DataStarn} from '../data.starn';
 import net from 'net';
 import {SendMessage} from './events/send-message';
 import {GetEventMessage} from './events/get-message';
-import {MessageMenager} from './message-manager';
+import {MessageMenager} from './messages/message-manager';
 
 export class CentralMessages {
 	private static readonly send: SendMessage = new SendMessage();
