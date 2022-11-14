@@ -1,14 +1,10 @@
 import type {Socket} from 'net';
-import {SendMessage} from './send-message';
-import {GetMessage} from './get-message';
+import {SendMessage} from './events/send-message';
 import {DataStarn} from '../data.starn';
 import {ConnectedTopics} from './connected-topics';
 
 export class MessageMenager {
 	private static readonly send: SendMessage = new SendMessage();
-	private static readonly get: GetMessage = new GetMessage(
-		MessageMenager.send.getEvent(),
-	);
 
 	private static readonly data: DataStarn = new DataStarn();
 

@@ -2,7 +2,7 @@ import type {EventEmitter} from 'events';
 import {on} from 'events';
 import type {Socket} from 'net';
 
-export class GetMessage {
+export class GetEventMessage {
 	// eslint-disable-next-line @typescript-eslint/parameter-properties
 	event: EventEmitter;
 

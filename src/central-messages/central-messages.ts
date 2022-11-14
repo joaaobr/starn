@@ -1,14 +1,13 @@
 import type {ParametersStarn} from '../types/parameters-starn';
-import {EventEmitter} from 'events';
 import {DataStarn} from '../data.starn';
 import net from 'net';
-import {SendMessage} from './send-message';
-import {GetMessage} from './get-message';
+import {SendMessage} from './events/send-message';
+import {GetEventMessage} from './events/get-message';
 import {MessageMenager} from './message-manager';
 
 export class CentralMessages {
 	private static readonly send: SendMessage = new SendMessage();
-	private static readonly get: GetMessage = new GetMessage(
+	private static readonly get: GetEventMessage = new GetEventMessage(
 		CentralMessages.send.getEvent(),
 	);
 
