@@ -13,22 +13,20 @@ export class CentralMessages {
 	);
 
 	private static readonly data: DataStarn = new DataStarn();
-	private static readonly messageMenager: MessageMenager = new MessageMenager();
+	messageMenager: MessageMenager;
 
 	port: number;
 	host?: string;
 	socket: net.Server;
-	topics: string[];
 
 	constructor(Params: ParametersStarn) {
 		this.port = Params.port;
 		this.host = Params.host;
-		this.topics = Params.topics;
-		CentralMessages.messageMenager.setTopics(this.topics);
+		this.messageMenager = new MessageMenager(Params.topics);
 
 		this.socket = net
 			.createServer(async socket => {
-				CentralMessages.messageMenager.messageMenager(socket);
+				this.messageMenager.messageMenager(socket);
 
 				await CentralMessages.get.getEventMessage(socket);
 			})

@@ -2,6 +2,7 @@ import type {Socket} from 'net';
 import {SendMessage} from './send-message';
 import {GetMessage} from './get-message';
 import {DataStarn} from '../data.starn';
+import {ConnectedTopics} from './connected-topics';
 
 export class MessageMenager {
 	private static readonly send: SendMessage = new SendMessage();
@@ -11,13 +12,16 @@ export class MessageMenager {
 
 	private static readonly data: DataStarn = new DataStarn();
 
-	topics?: string[];
+	// eslint-disable-next-line @typescript-eslint/parameter-properties
+	topics: string[];
+	connectedTopics: ConnectedTopics;
 
-	setTopics(topics: string[]) {
+	constructor(topics: string[]) {
 		this.topics = topics;
+		this.connectedTopics = new ConnectedTopics(topics);
 	}
 
-	messageMenager(socket: Socket) {
+	messageMenager(socket: Socket): void {
 		socket.on('data', data => {
 			const messages = MessageMenager.data.stringToArray(data);
 
@@ -37,6 +41,10 @@ export class MessageMenager {
 							time: message.time,
 							topic: message.topic,
 						});
+						break;
+
+					case 'Topic Connected':
+						this.connectedTopics.addTopicConnected(message.topic);
 						break;
 
 					default:

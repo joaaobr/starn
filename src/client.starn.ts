@@ -20,6 +20,8 @@ export class ClientStarn {
 		topic: string,
 		callback: (data: any, time: number, topic: string) => void,
 	): void {
+		this.connection.write(JSON.stringify({messageSendindType: 'Topic Connected', topic}).concat('\n'));
+
 		this.topics.validateTopic(topic, this.connection);
 
 		this.connection.on('data', data => {
