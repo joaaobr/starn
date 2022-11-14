@@ -1,9 +1,9 @@
 import {Sender} from '../index';
-import {ClientStarn} from '../index';
+import {Client} from '../index';
 
 describe('is it possible to create a new client', () => {
 	let sender: Sender;
-	let client: ClientStarn;
+	let client: Client;
 
 	beforeAll(() => {
 		sender = new Sender({
@@ -12,7 +12,7 @@ describe('is it possible to create a new client', () => {
 			typeMessage: 'string',
 		});
 
-		client = new ClientStarn({port: 2020, host: 'localhost'});
+		client = new Client({port: 2020, host: 'localhost'});
 
 		sender.sendMessage('A', 'Hello A');
 		sender.sendMessage('B', 'Hello B');

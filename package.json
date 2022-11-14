@@ -7,12 +7,14 @@
     "test": "jest",
     "start": "nodemon src/index.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaaobr/starn"
+  },
   "keywords": [],
   "author": "João Victor Dos Santos",
   "license": "ISC",
   "dependencies": {
-    "eslint": ">=8.0.0",
-    "jest": "^29.3.1",
     "ts-node": "^10.9.1",
     "typescript": ">=4.4"
   },
@@ -21,8 +23,10 @@
     "@types/mocha": "^10.0.0",
     "@typescript-eslint/eslint-plugin": ">=5.31.0",
     "@typescript-eslint/parser": ">=5.31.0",
+    "eslint": "^8.27.0",
     "eslint-config-xo": "^0.43.1",
     "eslint-config-xo-typescript": "^0.54.1",
+    "jest": "^29.3.1",
     "ts-jest": "^29.0.3"
   }
 }

@@ -11,7 +11,6 @@ export class CentralMessages {
 		CentralMessages.send.getEvent(),
 	);
 
-	private static readonly data: DataStarn = new DataStarn();
 	messageMenager: MessageMenager;
 
 	port: number;

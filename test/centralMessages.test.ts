@@ -15,12 +15,10 @@ describe('is it possible to create a new Central Messages', () => {
 		expect(centralMessages).toHaveProperty('port');
 		expect(centralMessages).toHaveProperty('host');
 		expect(centralMessages).toHaveProperty('socket');
-		expect(centralMessages).toHaveProperty('topics');
 	});
 
 	it('validate if properties have their true values', () => {
 		expect(centralMessages.port).toStrictEqual(2020);
 		expect(centralMessages.host).toStrictEqual('localhost');
-		expect(centralMessages.topics).toStrictEqual(['A', 'B', 'C']);
 	});
 });
