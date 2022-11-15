@@ -1,10 +1,10 @@
-import {CentralMessages} from '../index';
+import {Starn} from '../index';
 
 describe('is it possible to create a new Central Messages', () => {
-	let centralMessages: CentralMessages;
+	let centralMessages: Starn;
 
 	beforeAll(() => {
-		centralMessages = new CentralMessages({
+		centralMessages = new Starn({
 			port: 2020,
 			host: 'localhost',
 			topics: ['A', 'B', 'C'],
