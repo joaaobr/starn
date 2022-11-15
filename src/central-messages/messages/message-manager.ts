@@ -31,6 +31,10 @@ export class MessageMenager {
 					case 'Validate Topic':
 						MessageMenager.send.sendEventMessage({
 							topics: this.topics,
+							message: '',
+							time: 0,
+							messageSendindType: 'Topic Connected',
+							topic: '',
 						});
 						break;
 
@@ -48,6 +52,7 @@ export class MessageMenager {
 								message: message.message,
 								time: message.time,
 								topic: message.topic,
+								messageSendindType: 'Topic Connected',
 							});
 						}
 
@@ -57,12 +62,15 @@ export class MessageMenager {
 						this.connectedTopics.addTopicConnected(message.topic);
 
 						if (this.store.theTopicHasMessagesStored(message.topic)) {
-							const messagesOfTopic = this.store.receiveMessageFrom(message.topic);
+							const messagesOfTopic = this.store.receiveMessageFrom(
+								message.topic,
+							);
 							for (const messageOfTopic of messagesOfTopic) {
 								MessageMenager.send.sendEventMessage({
 									message: messageOfTopic.message,
 									time: messageOfTopic.time,
 									topic: messageOfTopic.topic,
+									messageSendindType: 'Topic Connected',
 								});
 							}
 

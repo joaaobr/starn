@@ -35,6 +35,11 @@ export class Client {
 				const message: DataSender = Client.data.parse(dataArray[i]);
 
 				if (message.topic === topic) {
+					if (message.messageState === 'string') {
+						// eslint-disable-next-line @typescript-eslint/no-base-to-string
+						message.message = String(message.message.toString());
+					}
+
 					callback(message.message, message.time, message.topic);
 				}
 			}
