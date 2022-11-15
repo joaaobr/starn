@@ -3,6 +3,7 @@ import type {MessageStore} from '../../types/message-store';
 
 export class AccumulatedMessages {
 	accumulatedMessages: MessageStore[] = [];
+	allAccumulatedMessages: MessageStore[] = [];
 
 	constructor(topics: string[]) {
 		for (const topic of topics) {
@@ -11,6 +12,8 @@ export class AccumulatedMessages {
 				messages: [],
 			});
 		}
+
+		this.allAccumulatedMessages = this.accumulatedMessages;
 	}
 
 	addMessage(topic: string, message: DataSender) {
@@ -19,6 +22,8 @@ export class AccumulatedMessages {
 				topicInAccumulatedMessages.messages.push(message);
 			}
 		}
+
+		this.allAccumulatedMessages = this.accumulatedMessages;
 	}
 
 	removeMessagesFrom(topic: string) {
