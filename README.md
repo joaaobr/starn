@@ -57,3 +57,7 @@
    
    client.getMessage("A", data => console.log(data));
 ```
+
+## LICENSE
+
+[MIT](https://opensource.org/licenses/MIT)
