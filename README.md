@@ -60,4 +60,4 @@
 
 ## LICENSE
 
-[MIT](https://opensource.org/licenses/MIT)
+[MIT](https://github.com/joaaobr/starn/blob/main/LICENSE)
