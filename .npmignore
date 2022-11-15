@@ -4,7 +4,7 @@ test
 
 .eslintrc.json
 
-jet.config.ts
+jest.config.ts
 
 node_modules
 
@@ -12,4 +12,8 @@ node_modules
 
 package-lock.json
 
-REAME.md
+README.md
+
+tmp
+
+src
