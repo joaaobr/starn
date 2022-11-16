@@ -79,6 +79,9 @@ export class MessageMenager {
 
 						break;
 
+					case 'Topic Disconnected':
+						this.connectedTopics.disconnectTopic(message.topic);
+						break;
 					default:
 						break;
 				}

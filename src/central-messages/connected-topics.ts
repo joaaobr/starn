@@ -27,4 +27,12 @@ export class ConnectedTopics {
 			}
 		}
 	}
+
+	disconnectTopic(topic: string) {
+		for (const tcp of this.topicsConnected) {
+			if (tcp.topic === topic) {
+				tcp.connected = 0;
+			}
+		}
+	}
 }

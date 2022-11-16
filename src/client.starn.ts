@@ -44,4 +44,12 @@ export class Client {
 			}
 		});
 	}
+
+	diconnect(topic: string) {
+		this.connection.write(
+			JSON.stringify({messageSendindType: 'Topic Disconnected', topic}).concat(
+				'\n',
+			),
+		);
+	}
 }
