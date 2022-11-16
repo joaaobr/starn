@@ -31,9 +31,9 @@ export class MessageMenager {
 					case 'Validate Topic':
 						MessageMenager.send.sendEventMessage({
 							topics: this.topics,
-							message: '',
+							message: 0,
 							time: 0,
-							messageSendindType: 'Topic Connected',
+							messageSendindType: 'Validate Topic',
 							topic: '',
 						});
 						break;
@@ -70,7 +70,7 @@ export class MessageMenager {
 									message: messageOfTopic.message,
 									time: messageOfTopic.time,
 									topic: messageOfTopic.topic,
-									messageSendindType: 'Topic Connected',
+									messageSendindType: 'Send Message',
 								});
 							}
 

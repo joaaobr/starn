@@ -7,7 +7,7 @@ export class SendMessage {
 	sendEventMessage(message: DataSender): void {
 		process.nextTick(() => {
 			if (typeof message.message === 'string') {
-				message.message = Buffer.from(message.message);
+				message.message = Buffer.from(message.message, 'utf-8');
 				message.messageState = 'string';
 			}
 

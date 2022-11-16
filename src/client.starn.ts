@@ -32,12 +32,11 @@ export class Client {
 			const dataArray = Client.data.stringToArray(data);
 
 			for (let i = 0; i < dataArray.length - 1; i++) {
-				const message: DataSender = Client.data.parse(dataArray[i]);
+				const message: any = Client.data.parse(dataArray[i]);
 
 				if (message.topic === topic) {
 					if (message.messageState === 'string') {
-						// eslint-disable-next-line @typescript-eslint/no-base-to-string
-						message.message = String(message.message.toString());
+						message.message = Buffer.from(message.message.data).toString();
 					}
 
 					callback(message.message, message.time, message.topic);
