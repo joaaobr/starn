@@ -60,7 +60,6 @@ export class MessageMenager {
 
 					case 'Topic Connected':
 						this.connectedTopics.addTopicConnected(message.topic);
-
 						if (this.store.theTopicHasMessagesStored(message.topic)) {
 							const messagesOfTopic = this.store.receiveMessageFrom(
 								message.topic,

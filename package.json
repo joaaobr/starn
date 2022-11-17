@@ -12,7 +12,9 @@
     "url": "https://github.com/joaaobr/starn"
   },
   "keywords": [
-    "socket"
+    "socket",
+    "framework",
+    "tcp"
   ],
   "author": "João Victor Dos Santos",
   "license": "MIT",
