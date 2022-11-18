@@ -64,14 +64,7 @@ export class MessageMenager {
 							const messagesOfTopic = this.store.receiveMessageFrom(
 								message.topic,
 							);
-							for (const messageOfTopic of messagesOfTopic) {
-								MessageMenager.send.sendEventMessage({
-									message: messageOfTopic.message,
-									time: messageOfTopic.time,
-									topic: messageOfTopic.topic,
-									messageSendindType: 'Send Message',
-								});
-							}
+							MessageMenager.send.sendEventMessage(messagesOfTopic);
 
 							this.store.removeMessagesFrom(message.topic);
 						}

@@ -4,14 +4,18 @@ import type {DataSender} from '../../types/data-sender';
 export class SendMessage {
 	private static readonly event: EventEmitter = new EventEmitter();
 
-	sendEventMessage(message: DataSender): void {
+	sendEventMessage(message: DataSender | string): void {
 		process.nextTick(() => {
-			if (typeof message.message === 'string') {
-				message.message = Buffer.from(message.message, 'utf-8');
-				message.messageState = 'string';
+			if (typeof message !== 'string') {
+				if (typeof message.message === 'string') {
+					message.message = Buffer.from(message.message, 'utf-8');
+					message.messageState = 'string';
+				}
+
+				message = JSON.stringify(message).concat('\n');
 			}
 
-			SendMessage.event.emit('message', JSON.stringify(message).concat('\n'));
+			SendMessage.event.emit('message', message);
 		});
 	}
 

@@ -1,7 +1,9 @@
+import {DataStarn} from '../../data.starn';
 import type {DataSender} from '../../types/data-sender';
 import type {MessageStore} from '../../types/message-store';
 
 export class AccumulatedMessages {
+	private static readonly data: DataStarn = new DataStarn();
 	accumulatedMessages: MessageStore[] = [];
 	allAccumulatedMessages: MessageStore[] = [];
 
@@ -9,7 +11,7 @@ export class AccumulatedMessages {
 		for (const topic of topics) {
 			this.accumulatedMessages.push({
 				topic,
-				messages: [],
+				messages: '',
 			});
 		}
 
@@ -19,7 +21,7 @@ export class AccumulatedMessages {
 	addMessage(topic: string, message: DataSender) {
 		for (const topicInAccumulatedMessages of this.accumulatedMessages) {
 			if (topicInAccumulatedMessages.topic === topic) {
-				topicInAccumulatedMessages.messages.push(message);
+				topicInAccumulatedMessages.messages += JSON.stringify(message) + '\n';
 			}
 		}
 
@@ -29,19 +31,19 @@ export class AccumulatedMessages {
 	removeMessagesFrom(topic: string) {
 		for (const tcp of this.accumulatedMessages) {
 			if (tcp.topic === topic) {
-				tcp.messages = [];
+				tcp.messages = '';
 			}
 		}
 	}
 
-	receiveMessageFrom(topic: string) {
+	receiveMessageFrom(topic: string): string {
 		for (const tcp of this.accumulatedMessages) {
 			if (tcp.topic === topic) {
 				return tcp.messages;
 			}
 		}
 
-		return [];
+		return '';
 	}
 
 	theTopicHasMessagesStored(topic: string): boolean {
