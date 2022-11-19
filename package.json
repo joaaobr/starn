@@ -24,7 +24,8 @@
   "keywords": [
     "socket",
     "framework",
-    "tcp"
+    "tcp",
+    "starn"
   ],
   "author": "João Victor Dos Santos",
   "license": "MIT",
