@@ -14,14 +14,14 @@ export class Starn extends CentralMessages {
 	}
 
 	sender() {
-		return new Client({
+		return new Sender({
 			port: this.port,
 			host: this.host,
 		});
 	}
 
 	client() {
-		return new Sender({
+		return new Client({
 			port: this.port,
 			host: this.host,
 		});
