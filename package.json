@@ -7,7 +7,10 @@
   "files": [
     "index.js",
     "index.ts",
-    "README.md"
+    "README.md",
+    "dist",
+    "src",
+    "LICENSE"
   ],
   "scripts": {
     "test": "jest",
