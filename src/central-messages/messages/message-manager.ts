@@ -29,7 +29,6 @@ export class MessageMenager {
 
 			for (let i = 0; i < messages.length - 1; i++) {
 				const message = MessageMenager.data.parse(messages[i]);
-
 				switch (message.messageSendindType) {
 					case 'Validate Topic':
 						MessageMenager.send.sendEventMessage({
@@ -82,6 +81,15 @@ export class MessageMenager {
 
 					case 'Topic Disconnected':
 						this.connectedTopics.disconnectTopic(message.topic);
+						break;
+					case 'List Topics':
+						MessageMenager.send.sendEventMessage({
+							topics: this.topics,
+							time: Date.now(),
+							topic: '',
+							message: '',
+							messageSendindType: 'List Topics',
+						});
 						break;
 					default:
 						break;
