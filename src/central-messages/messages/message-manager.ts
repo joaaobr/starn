@@ -25,7 +25,7 @@ export class MessageMenager {
 
 	messageMenager(socket: Socket): void {
 		socket.on('data', data => {
-			const messages = MessageMenager.data.stringToArray(data);
+			const messages = MessageMenager.data.toArray(data);
 
 			for (let i = 0; i < messages.length - 1; i++) {
 				const message = MessageMenager.data.parse(messages[i]);
@@ -42,7 +42,9 @@ export class MessageMenager {
 						break;
 
 					case 'Send Message':
-						if (!MessageMenager.topicsStarn.isTopic(this.topics, message.topic)) {
+						if (
+							!MessageMenager.topicsStarn.isTopic(this.topics, message.topic)
+						) {
 							return new TopicErros(message.topic);
 						}
 

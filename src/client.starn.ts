@@ -20,15 +20,17 @@ export class Client {
 		callback: (data: any, time: number, topic: string) => void,
 	): void {
 		this.connection.write(
-			JSON.stringify({messageSendindType: 'Topic Connected', topic, id: crypto.randomBytes(9).toString('hex')}).concat(
-				'\n',
-			),
+			JSON.stringify({
+				messageSendindType: 'Topic Connected',
+				topic,
+				id: crypto.randomBytes(9).toString('hex'),
+			}).concat('\n'),
 		);
 
 		this.topics.validateTopic(topic, this.connection);
 
 		this.connection.on('data', data => {
-			const dataArray = Client.data.stringToArray(data);
+			const dataArray = Client.data.toArray(data);
 			for (let i = 0; i < dataArray.length - 1; i++) {
 				const message: any = Client.data.parse(dataArray[i]);
 
@@ -45,9 +47,10 @@ export class Client {
 
 	diconnect(topic: string) {
 		this.connection.write(
-			JSON.stringify({messageSendindType: 'Topic Disconnected', topic}).concat(
-				'\n',
-			),
+			JSON.stringify({
+				messageSendindType: 'Topic Disconnected',
+				topic,
+			}).concat('\n'),
 		);
 	}
 }

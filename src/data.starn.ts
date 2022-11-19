@@ -8,7 +8,7 @@ export class DataStarn {
 		}
 	}
 
-	stringToArray(data: Buffer) {
+	toArray(data: Buffer) {
 		return data.toString().split('\n');
 	}
 

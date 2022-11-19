@@ -25,7 +25,7 @@ export class TopicsStarn {
 		);
 
 		connection.on('data', data => {
-			const dataArray = dataStarn.stringToArray(data);
+			const dataArray = dataStarn.toArray(data);
 
 			for (let i = 0; i < dataArray.length - 1; i++) {
 				const message: DataSender = dataStarn.parse(dataArray[i]);
