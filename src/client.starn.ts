@@ -30,9 +30,10 @@ export class Client {
 		this.topics.validateTopic(topic, this.connection);
 
 		this.connection.on('data', data => {
-			const dataArray = Client.data.toArray(data);
-			for (let i = 0; i < dataArray.length - 1; i++) {
-				const message: any = Client.data.parse(dataArray[i]);
+			const messagesList = Client.data.toArray(data);
+
+			for (let i = 0; i < messagesList.length - 1; i++) {
+				const message: any = Client.data.parse(messagesList[i]);
 
 				if (message.topic === topic && message.messageSendindType === 'Send Message') {
 					if (message.messageState === 'string') {

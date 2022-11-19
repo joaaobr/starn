@@ -28,10 +28,10 @@ export class MessageMenager {
 
 	messageMenager(socket: Socket): void {
 		socket.on('data', data => {
-			const messages = MessageMenager.data.toArray(data);
+			const messagesList = MessageMenager.data.toArray(data);
 
-			for (let i = 0; i < messages.length - 1; i++) {
-				const message = MessageMenager.data.parse(messages[i]);
+			for (let i = 0; i < messagesList.length - 1; i++) {
+				const message = MessageMenager.data.parse(messagesList[i]);
 				switch (message.messageSendindType) {
 					case 'Validate Topic':
 						MessageMenager.send.sendEventMessage({

@@ -25,10 +25,10 @@ export class TopicsStarn {
 		);
 
 		connection.on('data', data => {
-			const dataArray = dataStarn.toArray(data);
+			const messagesList = dataStarn.toArray(data);
 
-			for (let i = 0; i < dataArray.length - 1; i++) {
-				const message: DataSender = dataStarn.parse(dataArray[i]);
+			for (let i = 0; i < messagesList.length - 1; i++) {
+				const message: DataSender = dataStarn.parse(messagesList[i]);
 
 				if (message.topics && !this.isTopic(message.topics, topic)) {
 					return new TopicErros(topic);
