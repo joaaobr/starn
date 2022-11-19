@@ -25,8 +25,6 @@ export class Sender {
 	}
 
 	sendMessage(topic: string, data: Message | ArrayMessage): boolean {
-		this.topics.validateTopic(topic, this.connection);
-
 		if (this.type) {
 			Sender.data.typesEquals(data, this.type);
 		}

@@ -3,10 +3,13 @@ import {AccumulatedMessages} from './message-store-menager';
 import {SendMessage} from '../events/send-message';
 import {DataStarn} from '../../data.starn';
 import {ConnectedTopics} from '../connected-topics';
+import {TopicsStarn} from '../../topics.starn';
+import {TopicErros} from '../../errors/topic.erros';
 
 export class MessageMenager {
 	private static readonly send: SendMessage = new SendMessage();
 	private static readonly data: DataStarn = new DataStarn();
+	private static readonly topicsStarn: TopicsStarn = new TopicsStarn();
 
 	connectedTopics: ConnectedTopics;
 	private readonly store: AccumulatedMessages;
@@ -39,6 +42,10 @@ export class MessageMenager {
 						break;
 
 					case 'Send Message':
+						if (!MessageMenager.topicsStarn.isTopic(this.topics, message.topic)) {
+							return new TopicErros(message.topic);
+						}
+
 						// eslint-disable-next-line no-negated-condition
 						if (!this.connectedTopics.topicIsConnected(message.topic)) {
 							this.store.addMessage(message.topic, {

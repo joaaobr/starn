@@ -5,7 +5,7 @@ import {DataStarn} from './data.starn';
 import {TopicErros} from './errors/topic.erros';
 
 export class TopicsStarn {
-	private static isTopic(topics: string[], topic: string): boolean {
+	isTopic(topics: string[], topic: string): boolean {
 		for (const tpc of topics) {
 			if (tpc === topic) {
 				return true;
@@ -30,7 +30,7 @@ export class TopicsStarn {
 			for (let i = 0; i < dataArray.length - 1; i++) {
 				const message: DataSender = dataStarn.parse(dataArray[i]);
 
-				if (message.topics && !TopicsStarn.isTopic(message.topics, topic)) {
+				if (message.topics && !this.isTopic(message.topics, topic)) {
 					return new TopicErros(topic);
 				}
 			}
