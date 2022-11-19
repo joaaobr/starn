@@ -1,1 +1,1 @@
-export type Message = string | Buffer | number | Record<string, unknown>;
+export type Message = string | Buffer | number | boolean | Record<string, unknown>;

@@ -1,5 +1,4 @@
 import type {ParametersStarn} from '../types/parameters-starn';
-import {DataStarn} from '../data.starn';
 import net from 'net';
 import {SendMessage} from './events/send-message';
 import {GetEventMessage} from './events/get-message';
@@ -18,9 +17,13 @@ export class CentralMessages {
 	socket: net.Server;
 
 	constructor(Params: ParametersStarn) {
+		if (!Params.key) {
+			Params.key = 'default';
+		}
+
 		this.port = Params.port;
 		this.host = Params.host;
-		this.messageMenager = new MessageMenager(Params.topics);
+		this.messageMenager = new MessageMenager(Params.topics, Params.key);
 
 		this.socket = net
 			.createServer(async socket => {

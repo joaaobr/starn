@@ -34,7 +34,7 @@ export class Client {
 			for (let i = 0; i < dataArray.length - 1; i++) {
 				const message: any = Client.data.parse(dataArray[i]);
 
-				if (message.topic === topic) {
+				if (message.topic === topic && message.messageSendindType === 'Send Message') {
 					if (message.messageState === 'string') {
 						message.message = Buffer.from(message.message.data).toString();
 					}

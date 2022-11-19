@@ -16,8 +16,10 @@ export class MessageMenager {
 
 	// eslint-disable-next-line @typescript-eslint/parameter-properties, @typescript-eslint/member-ordering
 	topics: string[];
+	key: string;
 
-	constructor(topics: string[]) {
+	constructor(topics: string[], key: string) {
+		this.key = key;
 		this.topics = topics;
 		this.store = new AccumulatedMessages(topics);
 		this.connectedTopics = new ConnectedTopics(topics);
@@ -89,6 +91,14 @@ export class MessageMenager {
 							topic: '',
 							message: '',
 							messageSendindType: 'List Topics',
+						});
+						break;
+					case 'Validate Key':
+						MessageMenager.send.sendEventMessage({
+							time: Date.now(),
+							topic: '',
+							message: message.message === this.key,
+							messageSendindType: 'Validate Key',
 						});
 						break;
 					default:
