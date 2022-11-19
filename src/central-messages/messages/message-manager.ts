@@ -14,8 +14,9 @@ export class MessageMenager {
 	connectedTopics: ConnectedTopics;
 	private readonly store: AccumulatedMessages;
 
-	// eslint-disable-next-line @typescript-eslint/parameter-properties, @typescript-eslint/member-ordering
+	// eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/parameter-properties
 	topics: string[];
+	// eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/parameter-properties
 	key: string;
 
 	constructor(topics: string[], key: string) {
