@@ -7,11 +7,11 @@ export class Admin {
 	private static readonly data: DataStarn = new DataStarn();
 
 	connection: Socket;
-	keys: string[] = [];
+	key: string;
 
 	constructor(config: Params, key: string) {
 		this.connection = new ConnectStarn(config).getConnection();
-		this.keys.push(key);
+		this.key = key;
 	}
 
 	listTopics(callback: (data?: string[]) => void) {
