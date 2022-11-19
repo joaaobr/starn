@@ -18,10 +18,15 @@ export class AccumulatedMessages {
 		this.allAccumulatedMessages = this.accumulatedMessages;
 	}
 
-	addMessage(topic: string, message: DataSender) {
+	addMessage(topic: string, data: DataSender) {
+		if (typeof data.message === 'string') {
+			data.message = Buffer.from(data.message, 'utf-8');
+			data.messageState = 'string';
+		}
+
 		for (const topicInAccumulatedMessages of this.accumulatedMessages) {
 			if (topicInAccumulatedMessages.topic === topic) {
-				topicInAccumulatedMessages.messages += JSON.stringify(message) + '\n';
+				topicInAccumulatedMessages.messages += JSON.stringify(data) + '\n';
 			}
 		}
 
