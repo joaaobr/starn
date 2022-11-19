@@ -37,12 +37,7 @@
 ## How to create new Sender
 
 ```ts
-  import { Sender } from 'starn';
-
-  const sender = new Sender({
-    port: 2222,
-    host: "localhost"
-  });
+  const sender = starn.sender()
   
   sender.sendMessage("A", "Hello A");
 ```
@@ -50,12 +45,7 @@
 ## How to create new Client
 
 ```ts
-  import { Client } from 'starn';
-  
-  const client = new Client({
-    port: 2020, 
-    host: 'localhost'
-   });
+  const client = starn.client();
    
    client.getMessage("A", data => console.log(data));
 ```
