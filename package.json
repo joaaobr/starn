@@ -1,6 +1,6 @@
 {
   "name": "starn",
-  "version": "1.1.46",
+  "version": "1.1.5",
   "description": "Simple and fast messaging system",
   "main": "index.js",
   "types": "index.ts",
