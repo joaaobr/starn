@@ -3,8 +3,8 @@ import {Errors} from './erros';
 export class TopicErros {
 	message: string;
 
-	constructor(topic: string) {
-		this.message = `topic ${topic} is not valid.`;
+	constructor(message: string) {
+		this.message = message || 'There was some error';
 
 		throw new Errors('TopicError: ', this.message);
 	}

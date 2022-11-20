@@ -4,6 +4,8 @@ import {ConnectStarn} from '../connect.starn';
 import type {Params} from '../types/standard-params';
 import {DataStarn} from '../data.starn';
 import {KeyErros} from '../errors/key.erros';
+import crypto from 'crypto';
+import {TopicErros} from '../errors/topic.erros';
 
 export class Admin {
 	private static readonly data: DataStarn = new DataStarn();
@@ -52,9 +54,23 @@ export class Admin {
 	}
 
 	createTopic(topic: string) {
+		const idOfError = crypto.randomBytes(9).toString('hex');
+
 		this.connection.write(JSON.stringify({
 			messageSendindType: 'Create Topic',
+			id: idOfError,
 			topic,
 		}).concat('\n'));
+
+		this.connection.on('data', data => {
+			const messagesList = Admin.data.toArray(data);
+
+			for (let i = 0; i < messagesList.length - 1; i++) {
+				const message = Admin.data.parse(messagesList[i]);
+				if (message.id === idOfError) {
+					return new TopicErros(`the topic ${topic} already exists.`);
+				}
+			}
+		});
 	}
 }

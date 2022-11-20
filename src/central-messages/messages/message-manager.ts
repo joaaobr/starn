@@ -103,10 +103,21 @@ export class MessageMenager {
 						});
 						break;
 					case 'Create Topic':
-						console.log(message.topic);
-						this.topics.push(message.topic);
-						this.connectedTopics.topicsConnected.push({topic: message.topic, connected: 0});
+						if (this.topics.includes(message.topic)) {
+							MessageMenager.send.sendEventMessage({
+								time: Date.now(),
+								topic: '',
+								message: `the topics ${message.topic} already exists.`,
+								id: message.id,
+								messageSendindType: 'Create Topic',
+							});
+						} else {
+							this.topics.push(message.topic);
+							this.connectedTopics.topicsConnected.push({topic: message.topic, connected: 0});
+						}
+
 						break;
+
 					default:
 						break;
 				}

@@ -8,4 +8,5 @@ export type DataSender = {
 	topic: string;
 	topics?: string[];
 	messageState?: string;
+	id?: string;
 };
