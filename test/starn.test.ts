@@ -1,24 +1,26 @@
 import {Starn} from '../index';
 
 describe('is it possible to create a new Central Messages', () => {
-	let centralMessages: Starn;
+	let starn: Starn;
 
 	beforeAll(() => {
-		centralMessages = new Starn({
+		starn = new Starn({
 			port: 2020,
 			host: 'localhost',
 			topics: ['A', 'B', 'C'],
+			key: 'test',
 		});
 	});
 
 	it('validate if Starn properties exist', () => {
-		expect(centralMessages).toHaveProperty('port');
-		expect(centralMessages).toHaveProperty('host');
-		expect(centralMessages).toHaveProperty('socket');
+		expect(starn).toHaveProperty('port');
+		expect(starn).toHaveProperty('host');
+		expect(starn).toHaveProperty('socket');
+		expect(starn).toHaveProperty('key');
 	});
 
 	it('validate if properties have their true values', () => {
-		expect(centralMessages.port).toStrictEqual(2020);
-		expect(centralMessages.host).toStrictEqual('localhost');
+		expect(starn.port).toStrictEqual(2020);
+		expect(starn.host).toStrictEqual('localhost');
 	});
 });
