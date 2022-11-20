@@ -55,10 +55,15 @@ export class Admin {
 	}
 
 	createTopic(topic: string) {
-		Admin.topicsStarn.theTopicDoesNotExist(topic, this.connection);
-
 		this.connection.write(JSON.stringify({
 			messageSendindType: 'Create Topic',
+			topic,
+		}).concat('\n'));
+	}
+
+	removeTopic(topic: string) {
+		this.connection.write(JSON.stringify({
+			messageSendindType: 'Remove Topic',
 			topic,
 		}).concat('\n'));
 	}

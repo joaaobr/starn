@@ -36,10 +36,11 @@ export class MessageMenager {
 					case 'Validate Topic':
 						MessageMenager.send.sendEventMessage({
 							topics: this.topics,
-							message: 0,
-							time: 0,
+							message: '',
+							time: Date.now(),
 							messageSendindType: 'Validate Topic',
 							topic: '',
+							id: message.id,
 						});
 						break;
 
@@ -103,6 +104,10 @@ export class MessageMenager {
 						});
 						break;
 					case 'Create Topic':
+						if (this.topics.includes(message.topic)) {
+							return new TopicErros(`the topic ${message.topic} already exists.`);
+						}
+
 						this.topics.push(message.topic);
 						this.connectedTopics.topicsConnected.push({
 							topic: message.topic,
@@ -110,7 +115,14 @@ export class MessageMenager {
 						});
 
 						break;
+					case 'Remove Topic':
+						if (!this.topics.includes(message.topic)) {
+							return new TopicErros(`topic ${message.topic} is not valid.`);
+						}
 
+						this.topics.splice(this.topics.indexOf(message.topic), this.topics.indexOf(message.topic));
+						this.connectedTopics.topicsConnected.splice(this.topics.indexOf(message.topic), this.topics.indexOf(message.topic));
+						break;
 					default:
 						break;
 				}
