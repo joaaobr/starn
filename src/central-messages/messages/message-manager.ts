@@ -64,7 +64,7 @@ export class MessageMenager {
 								message: message.message,
 								time: message.time,
 								topic: message.topic,
-								messageSendindType: 'Topic Connected',
+								messageSendindType: 'Send Message',
 							});
 						}
 
