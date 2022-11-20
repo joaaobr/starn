@@ -2,7 +2,7 @@ import {TypesErros} from './errors/data.erros';
 import type {DataSender} from './types/data-sender';
 
 export class DataStarn {
-	typesEquals(data: any, type: string) {
+	typesAreEquals(data: any, type: string) {
 		if (typeof data !== type) {
 			return new TypesErros(data, type);
 		}
