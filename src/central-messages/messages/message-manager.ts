@@ -82,7 +82,7 @@ export class MessageMenager {
 
 						break;
 
-					case 'Topic Disconnected':
+					case 'Disconnect Topic':
 						this.connectedTopics.disconnectTopic(message.topic);
 						break;
 					case 'List Topics':
@@ -113,7 +113,10 @@ export class MessageMenager {
 							});
 						} else {
 							this.topics.push(message.topic);
-							this.connectedTopics.topicsConnected.push({topic: message.topic, connected: 0});
+							this.connectedTopics.topicsConnected.push({
+								topic: message.topic,
+								connected: 0,
+							});
 						}
 
 						break;
