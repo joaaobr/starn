@@ -11,9 +11,9 @@ export class ConnectedTopics {
 	}
 
 	topicIsConnected(topic: string): boolean {
-		for (const tcp of this.topicsConnected) {
-			if (tcp.topic === topic) {
-				return Boolean(tcp.connected);
+		for (const data of this.topicsConnected) {
+			if (data.topic === topic) {
+				return Boolean(data.connected);
 			}
 		}
 
@@ -21,17 +21,17 @@ export class ConnectedTopics {
 	}
 
 	addTopicConnected(topic: string): void {
-		for (const tcp of this.topicsConnected) {
-			if (tcp.topic === topic) {
-				tcp.connected = 1;
+		for (const data of this.topicsConnected) {
+			if (data.topic === topic) {
+				data.connected = 1;
 			}
 		}
 	}
 
 	disconnectTopic(topic: string) {
-		for (const tcp of this.topicsConnected) {
-			if (tcp.topic === topic) {
-				tcp.connected = 0;
+		for (const data of this.topicsConnected) {
+			if (data.topic === topic) {
+				data.connected = 0;
 			}
 		}
 	}
