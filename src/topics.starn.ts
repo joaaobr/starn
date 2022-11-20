@@ -6,16 +6,6 @@ import {TopicErros} from './errors/topic.erros';
 import crypto from 'crypto';
 
 export class TopicsStarn {
-	isTopic(topics: string[], topic: string): boolean {
-		for (const data of topics) {
-			if (data === topic) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
 	topicExists(topic: string, connection: Socket): boolean {
 		const idOfMessage = crypto.randomBytes(9).toString('hex');
 		const dataStarn = new DataStarn();
@@ -34,7 +24,7 @@ export class TopicsStarn {
 				const message: DataSender = dataStarn.parse(messagesList[i]);
 
 				if (message.id === idOfMessage) {
-					if (message.topics && !this.isTopic(message.topics, topic)) {
+					if (message.topics && !message.topics.includes(topic)) {
 						return new TopicErros(`topic ${topic} is not valid.`);
 					}
 
