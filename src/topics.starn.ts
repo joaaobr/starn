@@ -15,7 +15,7 @@ export class TopicsStarn {
 		return false;
 	}
 
-	validateTopic(topic: string, connection: Socket): boolean {
+	topicExists(topic: string, connection: Socket): boolean {
 		const dataStarn = new DataStarn();
 
 		connection.write(
@@ -32,6 +32,30 @@ export class TopicsStarn {
 
 				if (message.topics && !this.isTopic(message.topics, topic)) {
 					return new TopicErros(`topic ${topic} is not valid.`);
+				}
+			}
+		});
+
+		return true;
+	}
+
+	theTopicDoesNotExist(topic: string, connection: Socket) {
+		const dataStarn = new DataStarn();
+
+		connection.write(
+			JSON.stringify({
+				messageSendindType: 'Validate Topic',
+			}).concat('\n'),
+		);
+
+		connection.on('data', data => {
+			const messagesList = dataStarn.toArray(data);
+
+			for (let i = 0; i < messagesList.length - 1; i++) {
+				const message: DataSender = dataStarn.parse(messagesList[i]);
+
+				if (message.topics && this.isTopic(message.topics, topic)) {
+					return new TopicErros(`the topics ${topic} already exists.`);
 				}
 			}
 		});

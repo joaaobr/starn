@@ -26,7 +26,7 @@ export class Client {
 			}).concat('\n'),
 		);
 
-		Client.topics.validateTopic(topic, this.connection);
+		Client.topics.topicExists(topic, this.connection);
 
 		this.connection.on('data', data => {
 			const messagesList = Client.data.toArray(data);
