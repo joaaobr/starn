@@ -46,7 +46,7 @@ export class MessageMenager {
 
 					case 'Send Message':
 						if (
-							!MessageMenager.topicsStarn.isTopic(this.topics, message.topic)
+							!this.topics.includes(message.topic)
 						) {
 							return new TopicErros(message.topic);
 						}
