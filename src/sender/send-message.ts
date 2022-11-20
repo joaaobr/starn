@@ -5,8 +5,8 @@ import {MakeMessage} from './make-message';
 export class SendMessage {
 	private static readonly make: MakeMessage = new MakeMessage();
 
-	sendMessageToClient(topic: string, data: Message | ArrayMessage, connection: Socket) {
-		connection.write(SendMessage.make.makeMessage(topic, data),
+	sendMessageToClient(topic: string, message: Message | ArrayMessage, connection: Socket) {
+		connection.write(SendMessage.make.makeMessage(topic, message),
 			err => {
 				if (err) {
 					throw err;
