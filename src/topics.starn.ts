@@ -41,33 +41,4 @@ export class TopicsStarn {
 
 		return true;
 	}
-
-	theTopicDoesNotExist(topic: string, connection: Socket) {
-		const idOfMessage = crypto.randomBytes(9).toString('hex');
-		const dataStarn = new DataStarn();
-
-		connection.write(
-			JSON.stringify({
-				messageSendindType: 'Validate Topic',
-				id: idOfMessage,
-			}).concat('\n'),
-		);
-
-		connection.on('data', data => {
-			const messagesList = dataStarn.toArray(data);
-			for (let i = 0; i < messagesList.length - 1; i++) {
-				const message: DataSender = dataStarn.parse(messagesList[i]);
-
-				if (message.id === idOfMessage) {
-					if (message.topics && this.isTopic(message.topics, topic)) {
-						return new TopicErros(`the topic ${topic} already exists.`);
-					}
-
-					break;
-				}
-			}
-		});
-
-		return true;
-	}
 }
