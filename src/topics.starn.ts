@@ -33,8 +33,12 @@ export class TopicsStarn {
 			for (let i = 0; i < messagesList.length - 1; i++) {
 				const message: DataSender = dataStarn.parse(messagesList[i]);
 
-				if (message.id === idOfMessage && message.topics && !this.isTopic(message.topics, topic)) {
-					return new TopicErros(`topic ${topic} is not valid.`);
+				if (message.id === idOfMessage) {
+					if (message.topics && !this.isTopic(message.topics, topic)) {
+						return new TopicErros(`topic ${topic} is not valid.`);
+					}
+
+					return;
 				}
 			}
 		});
