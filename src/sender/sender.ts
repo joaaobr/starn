@@ -11,7 +11,7 @@ import {SendMessage} from './send-message';
 export class Sender {
 	private static readonly data: DataStarn = new DataStarn();
 	private static readonly send: SendMessage = new SendMessage();
-	type?: string;
+	messageType?: string;
 	topics: TopicsStarn;
 	private readonly connection: Socket;
 
@@ -20,13 +20,13 @@ export class Sender {
 			port: params.port,
 			host: params.host,
 		}).getConnection();
-		this.type = params.typeMessage;
+		this.messageType = params.typeMessage;
 		this.topics = new TopicsStarn();
 	}
 
 	sendMessage(topic: string, data: Message | ArrayMessage): boolean {
-		if (this.type) {
-			Sender.data.typesEquals(data, this.type);
+		if (this.messageType) {
+			Sender.data.typesAreEquals(data, this.messageType);
 		}
 
 		Sender.send.sendMessageToClient(topic, data, this.connection);
