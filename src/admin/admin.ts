@@ -40,6 +40,7 @@ export class Admin {
 
 		this.connection.on('data', data => {
 			const messagesList = Admin.data.toArray(data);
+
 			for (let i = 0; i < messagesList.length - 1; i++) {
 				const message = Admin.data.parse(messagesList[i]);
 
@@ -48,5 +49,12 @@ export class Admin {
 				}
 			}
 		});
+	}
+
+	createTopic(topic: string) {
+		this.connection.write(JSON.stringify({
+			messageSendindType: 'Create Topic',
+			topic,
+		}).concat('\n'));
 	}
 }

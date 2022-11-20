@@ -1,7 +1,7 @@
 import type {Connected} from '../types/connected-topics';
 
 export class ConnectedTopics {
-	topicsConnected: Connected[] = [];
+	topicsConnected: Connected[];
 
 	constructor(topics: string[]) {
 		this.topicsConnected = [];

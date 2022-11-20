@@ -102,6 +102,11 @@ export class MessageMenager {
 							messageSendindType: 'Validate Key',
 						});
 						break;
+					case 'Create Topic':
+						console.log(message.topic);
+						this.topics.push(message.topic);
+						this.connectedTopics.topicsConnected.push({topic: message.topic, connected: 0});
+						break;
 					default:
 						break;
 				}
