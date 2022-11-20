@@ -7,12 +7,11 @@ import {TopicsStarn} from './topics.starn';
 import crypto from 'crypto';
 export class Client {
 	private static readonly data: DataStarn = new DataStarn();
+	private static readonly topics: TopicsStarn = new TopicsStarn();
 	connection: Socket;
-	topics: TopicsStarn;
 
 	constructor(dataConnection: Params) {
 		this.connection = new ConnectStarn(dataConnection).getConnection();
-		this.topics = new TopicsStarn();
 	}
 
 	getMessage(
@@ -27,7 +26,7 @@ export class Client {
 			}).concat('\n'),
 		);
 
-		this.topics.validateTopic(topic, this.connection);
+		Client.topics.validateTopic(topic, this.connection);
 
 		this.connection.on('data', data => {
 			const messagesList = Client.data.toArray(data);
@@ -35,7 +34,10 @@ export class Client {
 			for (let i = 0; i < messagesList.length - 1; i++) {
 				const message: any = Client.data.parse(messagesList[i]);
 
-				if (message.topic === topic && message.messageSendindType === 'Send Message') {
+				if (
+					message.topic === topic
+          && message.messageSendindType === 'Send Message'
+				) {
 					if (message.messageState === 'string') {
 						message.message = Buffer.from(message.message.data).toString();
 					}
@@ -49,7 +51,7 @@ export class Client {
 	diconnect(topic: string) {
 		this.connection.write(
 			JSON.stringify({
-				messageSendindType: 'Topic Disconnected',
+				messageSendindType: 'Disconnect Topic',
 				topic,
 			}).concat('\n'),
 		);
