@@ -39,9 +39,11 @@ export class Admin {
 	}
 
 	listTopics(callback: (data?: string[]) => void) {
+		const id = crypto.randomBytes(9).toString('hex');
 		this.connection.write(
 			JSON.stringify({
 				messageSendindType: 'Get Topics',
+				id,
 			}).concat('\n'),
 		);
 
@@ -51,7 +53,7 @@ export class Admin {
 			for (let i = 0; i < messagesList.length - 1; i++) {
 				const message = Admin.data.parse(messagesList[i]);
 
-				if (message.messageSendindType === 'Get Topics') {
+				if (message.id === id && message.messageSendindType === 'Get Topics') {
 					callback(message.topics);
 				}
 			}
