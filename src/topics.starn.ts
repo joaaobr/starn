@@ -6,9 +6,10 @@ import {TopicErros} from './errors/topic.erros';
 import crypto from 'crypto';
 
 export class TopicsStarn {
+	private static readonly dataStarn: DataStarn = new DataStarn();
+
 	topicExists(topic: string, connection: Socket): boolean {
 		const idOfMessage = crypto.randomBytes(9).toString('hex');
-		const dataStarn = new DataStarn();
 
 		connection.write(
 			JSON.stringify({
@@ -18,10 +19,10 @@ export class TopicsStarn {
 		);
 
 		connection.on('data', data => {
-			const messagesList = dataStarn.toArray(data);
+			const messagesList = TopicsStarn.dataStarn.toArray(data);
 
 			for (let i = 0; i < messagesList.length - 1; i++) {
-				const message: DataSender = dataStarn.parse(messagesList[i]);
+				const message: DataSender = TopicsStarn.dataStarn.parse(messagesList[i]);
 
 				if (message.id === idOfMessage) {
 					if (message.topics && !message.topics.includes(topic)) {
