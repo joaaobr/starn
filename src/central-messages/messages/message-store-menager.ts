@@ -1,9 +1,7 @@
-import {DataStarn} from '../../data.starn';
 import type {DataSender} from '../../types/data-sender';
 import type {MessageStore} from '../../types/message-store';
 
 export class AccumulatedMessages {
-	private static readonly data: DataStarn = new DataStarn();
 	accumulatedMessages: MessageStore[] = [];
 	allAccumulatedMessages: MessageStore[] = [];
 
