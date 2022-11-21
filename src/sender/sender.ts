@@ -1,7 +1,6 @@
 import type {Socket} from 'net';
 import type {ParametersSender} from '../types/parameters-sender';
 import type {Message} from '../types/message';
-import type {ArrayMessage} from '../types/array-message';
 import {DataStarn} from '../data.starn';
 
 import {ConnectStarn} from '../connect.starn';
@@ -24,7 +23,7 @@ export class Sender {
 		this.topics = new TopicsStarn();
 	}
 
-	sendMessage(topic: string, data: Message | ArrayMessage): boolean {
+	sendMessage(topic: string, data: Message): boolean {
 		if (this.messageType) {
 			Sender.data.typesAreEquals(data, this.messageType);
 		}

@@ -1,8 +1,8 @@
 import type {Message} from './message';
-import type {ArrayMessage} from './array-message';
 
 export type DataSender = {
-	message: Message | ArrayMessage;
+	message: Message | Message[];
+	topics?: string[];
 	time: number;
 	messageSendindType?:
 	| 'Send Message'
@@ -14,7 +14,6 @@ export type DataSender = {
 	| 'Create Topic'
 	| 'Remove Topic';
 	topic: string;
-	topics?: string[];
 	messageState?: string;
 	id?: string;
 };
