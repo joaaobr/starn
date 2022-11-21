@@ -17,10 +17,12 @@ export class Admin {
 		this.key = key;
 		this.connection = new ConnectStarn(config).getConnection();
 
-		this.connection.write(JSON.stringify({
-			messageSendindType: 'Validate Key',
-			message: key,
-		}).concat('\n'));
+		this.connection.write(
+			JSON.stringify({
+				messageSendindType: 'Validate Key',
+				message: key,
+			}).concat('\n'),
+		);
 
 		this.connection.on('data', data => {
 			const messagesList = Admin.data.toArray(data);
@@ -37,9 +39,11 @@ export class Admin {
 	}
 
 	listTopics(callback: (data?: string[]) => void) {
-		this.connection.write(JSON.stringify({
-			messageSendindType: 'Get Topics',
-		}).concat('\n'));
+		this.connection.write(
+			JSON.stringify({
+				messageSendindType: 'Get Topics',
+			}).concat('\n'),
+		);
 
 		this.connection.on('data', data => {
 			const messagesList = Admin.data.toArray(data);
@@ -55,16 +59,20 @@ export class Admin {
 	}
 
 	createTopic(topic: string) {
-		this.connection.write(JSON.stringify({
-			messageSendindType: 'Create Topic',
-			topic,
-		}).concat('\n'));
+		this.connection.write(
+			JSON.stringify({
+				messageSendindType: 'Create Topic',
+				topic,
+			}).concat('\n'),
+		);
 	}
 
 	removeTopic(topic: string) {
-		this.connection.write(JSON.stringify({
-			messageSendindType: 'Remove Topic',
-			topic,
-		}).concat('\n'));
+		this.connection.write(
+			JSON.stringify({
+				messageSendindType: 'Remove Topic',
+				topic,
+			}).concat('\n'),
+		);
 	}
 }
