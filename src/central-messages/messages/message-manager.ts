@@ -31,12 +31,12 @@ export class MessageMenager {
 			for (let i = 0; i < messagesList.length - 1; i++) {
 				const message = MessageMenager.data.parse(messagesList[i]);
 				switch (message.messageSendindType) {
-					case 'Validate Topic':
+					case 'Get Topics':
 						MessageMenager.send.sendEventMessage({
 							topics: this.topics,
 							message: '',
 							time: Date.now(),
-							messageSendindType: 'Validate Topic',
+							messageSendindType: 'Get Topics',
 							topic: '',
 							id: message.id,
 						});

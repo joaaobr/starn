@@ -13,7 +13,7 @@ export class TopicsStarn {
 
 		connection.write(
 			JSON.stringify({
-				messageSendindType: 'Validate Topic',
+				messageSendindType: 'Get Topics',
 				id: idOfMessage,
 			}).concat('\n'),
 		);
@@ -22,7 +22,9 @@ export class TopicsStarn {
 			const messagesList = TopicsStarn.dataStarn.toArray(data);
 
 			for (let i = 0; i < messagesList.length - 1; i++) {
-				const message: DataSender = TopicsStarn.dataStarn.parse(messagesList[i]);
+				const message: DataSender = TopicsStarn.dataStarn.parse(
+					messagesList[i],
+				);
 
 				if (message.id === idOfMessage) {
 					if (message.topics && !message.topics.includes(topic)) {
