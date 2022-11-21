@@ -84,15 +84,6 @@ export class MessageMenager {
 					case 'Disconnect Topic':
 						this.connectedTopics.disconnectTopic(message.topic);
 						break;
-					case 'List Topics':
-						MessageMenager.send.sendEventMessage({
-							topics: this.topics,
-							time: Date.now(),
-							topic: '',
-							message: '',
-							messageSendindType: 'List Topics',
-						});
-						break;
 					case 'Validate Key':
 						MessageMenager.send.sendEventMessage({
 							time: Date.now(),

@@ -9,7 +9,6 @@ export type DataSender = {
 	| 'Get Topics'
 	| 'Topic Connected'
 	| 'Disconnect Topic'
-	| 'List Topics'
 	| 'Validate Key'
 	| 'Create Topic'
 	| 'Remove Topic';

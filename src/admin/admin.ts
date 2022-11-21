@@ -38,7 +38,7 @@ export class Admin {
 
 	listTopics(callback: (data?: string[]) => void) {
 		this.connection.write(JSON.stringify({
-			messageSendindType: 'List Topics',
+			messageSendindType: 'Get Topics',
 		}).concat('\n'));
 
 		this.connection.on('data', data => {
@@ -47,7 +47,7 @@ export class Admin {
 			for (let i = 0; i < messagesList.length - 1; i++) {
 				const message = Admin.data.parse(messagesList[i]);
 
-				if (message.messageSendindType === 'List Topics') {
+				if (message.messageSendindType === 'Get Topics') {
 					callback(message.topics);
 				}
 			}
