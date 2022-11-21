@@ -5,11 +5,10 @@ export class SendMessage {
 	private static readonly make: MakeMessage = new MakeMessage();
 
 	sendMessageToClient(topic: string, message: Message, connection: Socket) {
-		connection.write(SendMessage.make.makeMessage(topic, message),
-			err => {
-				if (err) {
-					throw err;
-				}
-			});
+		connection.write(SendMessage.make.makeMessage(topic, message), err => {
+			if (err) {
+				throw err;
+			}
+		});
 	}
 }
