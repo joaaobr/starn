@@ -6,7 +6,7 @@
   "types": "index.ts",
   "files": [
     "index.js",
-    "index.d.ts",
+    "index.ts",
     "README.md",
     "dist",
     "src",
