@@ -1,6 +1,6 @@
 {
   "name": "starn",
-  "version": "1.1.7",
+  "version": "1.1.71",
   "description": "Simple and fast messaging system.",
   "main": "index.js",
   "types": "index.ts",
@@ -25,7 +25,8 @@
     "socket",
     "framework",
     "tcp",
-    "starn"
+    "starn",
+    "messenger"
   ],
   "author": "João Victor Dos Santos",
   "license": "MIT",
