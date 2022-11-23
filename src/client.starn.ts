@@ -1,4 +1,5 @@
 import type {Params} from './types/standard-params';
+import type {Message} from './types/message';
 import type {Socket} from 'net';
 
 import {ConnectStarn} from './connect.starn';
@@ -16,7 +17,7 @@ export class Client {
 
 	getMessage(
 		topic: string,
-		callback: (data: any, time: number, topic: string) => void,
+		callback: (data: Message, time: number, topic: string) => void,
 	): void {
 		this.connection.write(
 			JSON.stringify({
