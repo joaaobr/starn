@@ -7,7 +7,7 @@ import {KeyErros} from '../errors/key.erros';
 import crypto from 'crypto';
 
 export class Admin {
-	private static readonly data: DataStarn = new DataStarn();
+	private static readonly dataStarn: DataStarn = new DataStarn();
 	connection: Socket;
 	key: string;
 
@@ -23,9 +23,9 @@ export class Admin {
 		);
 
 		this.connection.on('data', data => {
-			const messagesList = Admin.data.toArray(data);
+			const messagesList = Admin.dataStarn.toArray(data);
 			for (let i = 0; i < messagesList.length - 1; i++) {
-				const message = Admin.data.parse(messagesList[i]);
+				const message = Admin.dataStarn.parse(messagesList[i]);
 
 				if (message.messageSendindType === 'Validate Key') {
 					if (!message.message) {
@@ -46,10 +46,10 @@ export class Admin {
 		);
 
 		this.connection.on('data', data => {
-			const messagesList = Admin.data.toArray(data);
+			const messagesList = Admin.dataStarn.toArray(data);
 
 			for (let i = 0; i < messagesList.length - 1; i++) {
-				const message = Admin.data.parse(messagesList[i]);
+				const message = Admin.dataStarn.parse(messagesList[i]);
 
 				if (message.id === id && message.messageSendindType === 'Get Topics') {
 					callback(message.topics);
