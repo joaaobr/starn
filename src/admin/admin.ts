@@ -9,7 +9,6 @@ import {TopicsStarn} from '../topics.starn';
 
 export class Admin {
 	private static readonly data: DataStarn = new DataStarn();
-	private static readonly topicsStarn: TopicsStarn = new TopicsStarn();
 	connection: Socket;
 	key: string;
 
