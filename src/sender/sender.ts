@@ -4,14 +4,12 @@ import type {Message} from '../types/message';
 import {DataStarn} from '../data.starn';
 
 import {ConnectStarn} from '../connect.starn';
-import {TopicsStarn} from '../topics.starn';
 import {SendMessage} from './send-message';
 
 export class Sender {
 	private static readonly data: DataStarn = new DataStarn();
 	private static readonly send: SendMessage = new SendMessage();
 	messageType?: string;
-	topics: TopicsStarn;
 	private readonly connection: Socket;
 
 	constructor(params: ParametersSender) {
@@ -20,7 +18,6 @@ export class Sender {
 			host: params.host,
 		}).getConnection();
 		this.messageType = params.typeMessage;
-		this.topics = new TopicsStarn();
 	}
 
 	sendMessage(topic: string, data: Message): boolean {
