@@ -5,7 +5,6 @@ import type {Params} from '../types/standard-params';
 import {DataStarn} from '../data.starn';
 import {KeyErros} from '../errors/key.erros';
 import crypto from 'crypto';
-import {TopicsStarn} from '../topics.starn';
 
 export class Admin {
 	private static readonly data: DataStarn = new DataStarn();
