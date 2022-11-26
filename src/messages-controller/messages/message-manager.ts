@@ -1,13 +1,13 @@
 import type {Socket} from 'net';
 import {AccumulatedMessages} from './message-store-menager';
 import {SendMessage} from '../events/send-message';
-import {DataStarn} from '../../data.starn';
+import {Data} from '../../data';
 import {ConnectedTopics} from '../connected-topics';
 import {TopicErros} from '../../errors/topic.erros';
 
 export class MessageMenager {
 	private static readonly send: SendMessage = new SendMessage();
-	private static readonly data: DataStarn = new DataStarn();
+	private static readonly data: Data = new Data();
 
 	connectedTopics: ConnectedTopics;
 	private readonly store: AccumulatedMessages;
@@ -43,9 +43,7 @@ export class MessageMenager {
 						break;
 
 					case 'Send Message':
-						if (
-							!this.topics.includes(message.topic)
-						) {
+						if (!this.topics.includes(message.topic)) {
 							return new TopicErros(message.topic);
 						}
 
@@ -94,7 +92,9 @@ export class MessageMenager {
 						break;
 					case 'Create Topic':
 						if (this.topics.includes(message.topic)) {
-							return new TopicErros(`the topic ${message.topic} already exists.`);
+							return new TopicErros(
+								`the topic ${message.topic} already exists.`,
+							);
 						}
 
 						this.topics.push(message.topic);
@@ -109,8 +109,14 @@ export class MessageMenager {
 							return new TopicErros(`topic ${message.topic} is not valid.`);
 						}
 
-						this.topics.splice(this.topics.indexOf(message.topic), this.topics.indexOf(message.topic));
-						this.connectedTopics.topicsConnected.splice(this.topics.indexOf(message.topic), this.topics.indexOf(message.topic));
+						this.topics.splice(
+							this.topics.indexOf(message.topic),
+							this.topics.indexOf(message.topic),
+						);
+						this.connectedTopics.topicsConnected.splice(
+							this.topics.indexOf(message.topic),
+							this.topics.indexOf(message.topic),
+						);
 						break;
 					default:
 						break;

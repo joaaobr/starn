@@ -1,6 +1,6 @@
 import {Admin} from './admin/admin';
 import {MessagesController} from './messages-controller/messages-controller';
-import {Client} from './client.starn';
+import {Client} from './client';
 import {Sender} from './sender/sender';
 import type {ParametersStarn} from './types/parameters-starn';
 

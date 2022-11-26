@@ -2,7 +2,7 @@ import type {Params} from './types/standard-params';
 import type {Socket} from 'net';
 import {createConnection} from 'net';
 
-export class ConnectStarn {
+export class Connection {
 	connection: Socket;
 
 	constructor(connect: Params) {

@@ -2,17 +2,17 @@ import type {Params} from './types/standard-params';
 import type {Message} from './types/message';
 import type {Socket} from 'net';
 
-import {ConnectStarn} from './connect.starn';
-import {DataStarn} from './data.starn';
-import {TopicsStarn} from './topics.starn';
+import {Connection} from './connection';
+import {Data} from './data';
+import {Topics} from './topics';
 import crypto from 'crypto';
 export class Client {
-	private static readonly data: DataStarn = new DataStarn();
-	private static readonly topics: TopicsStarn = new TopicsStarn();
+	private static readonly data: Data = new Data();
+	private static readonly topics: Topics = new Topics();
 	connection: Socket;
 
 	constructor(dataConnection: Params) {
-		this.connection = new ConnectStarn(dataConnection).getConnection();
+		this.connection = new Connection(dataConnection).getConnection();
 	}
 
 	getMessage(
