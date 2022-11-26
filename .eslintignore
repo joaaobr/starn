@@ -2,5 +2,4 @@ tmp
 dist
 index.js
 starn
-test
-jest.config.json
+jest.config.ts
