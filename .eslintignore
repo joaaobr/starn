@@ -2,3 +2,5 @@ tmp
 dist
 index.js
 starn
+test
+jest.config.json

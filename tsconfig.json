@@ -14,24 +14,8 @@
     "locale": "en",
     "module": "commonjs",
     "moduleResolution": "node",
-    // "noFallthroughCasesInSwitch": true,
-    // "noImplicitAny": true,
-    // "noImplicitReturns": true,
-    // "noImplicitThis": true,
-    // "noImplicitUseStrict": false,
-    // "noUnusedParameters": true,
     "outDir": "public/js",
     "baseUrl": "resources/",
-    "paths": {
-        "Base/*":           [ "ts/*" ],
-        "@js/*":            [ "js/*" ],
-        "@ts/*":            [ "ts/*" ],
-        "Component/*":      [ "ts/Components/*" ],
-        "Interface/*":      [ "ts/Interfaces/*" ],
-        "Model/*":          [ "ts/Model/*" ],
-        "Controller/*":     [ "ts/Controller/*" ],
-        "Helper/*":         [ "ts/Helper/*" ]
-    },
     "pretty": true,
     "sourceMap": true,
     "target": "ES5",
@@ -41,11 +25,10 @@
     "downlevelIteration": true
 },
 "include": [
-    "resources/ts/**/*"
+    "./src"
 ],
 "exclude": [
     "node_modules",
-    "**/*.spec.ts"
 ],
 "files": [
     "./node_modules/@types/node/index.d.ts"
