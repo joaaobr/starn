@@ -17,7 +17,7 @@ export class Client {
 
 	getMessage(
 		topic: string,
-		callback: (data: Message, time: number, topic: string) => void,
+		callback: (message: Message, time: number, topic: string) => void,
 	): void {
 		this.connection.write(
 			JSON.stringify({

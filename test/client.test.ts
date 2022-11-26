@@ -24,18 +24,18 @@ describe('is it possible to create a new client', () => {
 	});
 
 	it('validate if data of topics were sending', () => {
-		client.getMessage('A', (data, time, topic) => {
-			expect(data).toBe('Hello A');
+		client.getMessage('A', (message, time, topic) => {
+			expect(message).toBe('Hello A');
 			expect(topic).toBe('A');
 		});
 
-		client.getMessage('B', (data, time, topic) => {
-			expect(data).toBe('Hello B');
+		client.getMessage('B', (message, time, topic) => {
+			expect(message).toBe('Hello B');
 			expect(topic).toBe('B');
 		});
 
-		client.getMessage('C', (data, time, topic) => {
-			expect(data).toBe('Hello C');
+		client.getMessage('C', (message, time, topic) => {
+			expect(message).toBe('Hello C');
 			expect(topic).toBe('C');
 		});
 	});
