@@ -10,7 +10,8 @@
                 "xo-typescript"
             ],
             "files": [
-                "*.ts"
+                "*.ts",
+                "*.test.ts"
             ]
         }
     ],

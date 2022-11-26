@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import {Sender} from '../index';
 import {Client} from '../index';
 
@@ -12,6 +13,7 @@ describe('is it possible to create a new client', () => {
 			typeMessage: 'string',
 		});
 
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		client = new Client({port: 2020, host: 'localhost'});
 
 		sender.sendMessage('A', 'Hello A');
