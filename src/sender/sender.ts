@@ -20,12 +20,12 @@ export class Sender {
 		this.messageType = params.typeMessage;
 	}
 
-	sendMessage(topic: string, data: Message): boolean {
+	sendMessage(topic: string, message: Message): boolean {
 		if (this.messageType) {
-			Sender.data.typesAreEquals(data, this.messageType);
+			Sender.data.typesAreEquals(message, this.messageType);
 		}
 
-		Sender.send.sendMessageToClient(topic, data, this.connection);
+		Sender.send.sendMessageToClient(topic, message, this.connection);
 
 		return true;
 	}
