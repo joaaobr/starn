@@ -29,6 +29,10 @@ export class MessageMenager {
 			const messagesList = MessageMenager.data.toArray(data);
 
 			for (let i = 0; i < messagesList.length - 1; i++) {
+				if (!messagesList[i].startsWith('{', 0)) {
+					messagesList[i] = '{'.concat(messagesList[i]);
+				}
+
 				const message = MessageMenager.data.parse(messagesList[i]);
 				switch (message.messageSendindType) {
 					case 'Get Topics':
