@@ -1,11 +1,17 @@
 import type {Socket} from 'net';
 import type {Message} from '../types/message';
-import {MakeMessage} from './make-message';
 export class SendMessage {
-	private static readonly make: MakeMessage = new MakeMessage();
+	private makeMessage(topic: string, message: Message): string {
+		return JSON.stringify({
+			topic,
+			messageSendindType: 'Send Message',
+			message,
+		}).concat('\n');
+	}
 
-	sendMessageToClient(topic: string, message: Message, connection: Socket) {
-		connection.write(SendMessage.make.makeMessage(topic, message), err => {
+	// eslint-disable-next-line @typescript-eslint/member-ordering
+	sendMessageToClient(topic: string, message: Message, connection: Socket): void {
+		connection.write(this.makeMessage(topic, message), err => {
 			if (err) {
 				throw err;
 			}

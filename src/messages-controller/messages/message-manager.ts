@@ -29,20 +29,15 @@ export class MessageMenager {
 			const messagesList = MessageMenager.data.toArray(data);
 
 			for (let i = 0; i < messagesList.length - 1; i++) {
-				if (!messagesList[i].startsWith('{', 0)) {
-					messagesList[i] = '{'.concat(messagesList[i]);
-				}
-
 				const message = MessageMenager.data.parse(messagesList[i]);
+
 				switch (message.messageSendindType) {
 					case 'Get Topics':
 						MessageMenager.send.sendEventMessage({
 							topics: this.topics,
-							message: '',
-							time: Date.now(),
-							messageSendindType: 'Get Topics',
-							topic: '',
 							id: message.id,
+							message: '',
+							topic: ''
 						});
 						break;
 
@@ -55,14 +50,12 @@ export class MessageMenager {
 						if (!this.connectedTopics.topicIsConnected(message.topic)) {
 							this.store.addMessage(message.topic, {
 								message: message.message,
-								time: message.time,
 								topic: message.topic,
 								messageSendindType: 'Send Message',
 							});
 						} else {
 							MessageMenager.send.sendEventMessage({
 								message: message.message,
-								time: message.time,
 								topic: message.topic,
 								messageSendindType: 'Send Message',
 							});
@@ -88,7 +81,6 @@ export class MessageMenager {
 						break;
 					case 'Validate Key':
 						MessageMenager.send.sendEventMessage({
-							time: Date.now(),
 							topic: '',
 							message: message.message === this.key,
 							messageSendindType: 'Validate Key',

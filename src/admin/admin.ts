@@ -51,7 +51,7 @@ export class Admin {
 			for (let i = 0; i < messagesList.length - 1; i++) {
 				const message = Admin.data.parse(messagesList[i]);
 
-				if (message.id === id && message.messageSendindType === 'Get Topics') {
+				if (message.id === id) {
 					callback(message.topics);
 				}
 			}

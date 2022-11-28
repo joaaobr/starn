@@ -5,7 +5,6 @@ import type {Socket} from 'net';
 import {Connection} from './connection';
 import {Data} from './data';
 import {Topics} from './topics';
-import crypto from 'crypto';
 export class Client {
 	private static readonly data: Data = new Data();
 	private static readonly topics: Topics = new Topics();
@@ -23,7 +22,6 @@ export class Client {
 			JSON.stringify({
 				messageSendindType: 'Topic Connected',
 				topic,
-				id: crypto.randomBytes(9).toString('hex'),
 			}).concat('\n'),
 		);
 
@@ -31,6 +29,7 @@ export class Client {
 
 		this.connection.on('data', data => {
 			const messagesList = Client.data.toArray(data);
+			// messagesList.map(v => console.log(v))
 			for (let i = 0; i < messagesList.length - 1; i++) {
 				const message: any = Client.data.parse(messagesList[i]);
 
@@ -42,7 +41,7 @@ export class Client {
 						message.message = Buffer.from(message.message.data).toString();
 					}
 
-					callback(message.message, message.time, message.topic);
+					callback(message.message, Date.now(), message.topic);
 				}
 			}
 		});

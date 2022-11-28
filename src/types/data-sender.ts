@@ -3,7 +3,7 @@ import type {Message} from './message';
 export type DataSender = {
 	message: Message | Message[];
 	topics?: string[];
-	time: number;
+	time?: number;
 	messageSendindType?:
 	| 'Send Message'
 	| 'Get Topics'

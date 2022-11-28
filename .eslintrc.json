@@ -4,7 +4,7 @@
         "node": true
     },
     "extends": "xo",
-    "overrides": [
+    "overres": [
         {
             "extends": [
                 "xo-typescript"
