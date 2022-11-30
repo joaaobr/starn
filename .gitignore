@@ -2,7 +2,6 @@ node_modules
 tmp
 yarn.lock
 .npmrc
-package-lock.json
 dist
 to-do
 starn
