@@ -24,6 +24,7 @@ export class Admin {
 
 		this.connection.on('data', data => {
 			const messagesList = Admin.data.toArray(data);
+
 			for (let i = 0; i < messagesList.length - 1; i++) {
 				const message = Admin.data.parse(messagesList[i]);
 
@@ -38,6 +39,7 @@ export class Admin {
 
 	listTopics(callback: (data?: string[]) => void) {
 		const id = crypto.randomBytes(9).toString('hex');
+
 		this.connection.write(
 			JSON.stringify({
 				messageSendindType: 'Get Topics',
@@ -74,5 +76,29 @@ export class Admin {
 				topic,
 			}).concat('\n'),
 		);
+	}
+
+	topicInfo(topic: string, callback: (info: any) => void) {
+		const id = crypto.randomBytes(9).toString('hex');
+
+		this.connection.write(
+			JSON.stringify({
+				messageSendindType: 'Get Topic Info',
+				topic,
+				id,
+			}).concat('\n'),
+		);
+
+		this.connection.on('data', data => {
+			const messagesList = Admin.data.toArray(data);
+
+			for (let i = 0; i < messagesList.length - 1; i++) {
+				const message = Admin.data.parse(messagesList[i]);
+
+				if (message.id === id) {
+					callback(message.message);
+				}
+			}
+		});
 	}
 }

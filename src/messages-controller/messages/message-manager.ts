@@ -97,6 +97,7 @@ export class MessageMenager {
 						this.connectedTopics.topicsConnected.push({
 							topic: message.topic,
 							connected: 0,
+							howManyConnections: 1
 						});
 
 						break;
@@ -114,6 +115,17 @@ export class MessageMenager {
 							this.topics.indexOf(message.topic),
 						);
 						break;
+
+					case 'Get Topic Info':
+						const topicInfo = this.connectedTopics.getTopicInfo(message.topic);
+
+						MessageMenager.send.sendEventMessage({
+							topic: '',
+							id: message.id,
+							message: topicInfo,
+							messageSendindType: 'Get Topic Info',
+						});
+						break;	
 					default:
 						break;
 				}

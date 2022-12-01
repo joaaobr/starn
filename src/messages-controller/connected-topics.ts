@@ -6,7 +6,7 @@ export class ConnectedTopics {
 	constructor(topics: string[]) {
 		this.topicsConnected = [];
 		for (const topic of topics) {
-			this.topicsConnected.push({topic, connected: 0});
+			this.topicsConnected.push({topic, connected: 0, howManyConnections: 0});
 		}
 	}
 
@@ -24,6 +24,7 @@ export class ConnectedTopics {
 		for (const data of this.topicsConnected) {
 			if (data.topic === topic) {
 				data.connected = 1;
+				data.howManyConnections++;
 			}
 		}
 	}
@@ -32,6 +33,14 @@ export class ConnectedTopics {
 		for (const data of this.topicsConnected) {
 			if (data.topic === topic) {
 				data.connected = 0;
+			}
+		}
+	}
+
+	getTopicInfo(topic: string) {
+		for (const data of this.topicsConnected) {
+			if (data.topic === topic) {
+				return data;
 			}
 		}
 	}

@@ -10,7 +10,8 @@ export type DataSender = {
 	| 'Disconnect Topic'
 	| 'Validate Key'
 	| 'Create Topic'
-	| 'Remove Topic';
+	| 'Remove Topic'
+	| 'Get Topic Info';
 	topic: string;
 	messageState?: string;
 	id?: string;
