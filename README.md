@@ -1,10 +1,10 @@
 # Starn 
 
 
-### Starn is a simple and fast messaging system.
+Starn is a simple and fast messaging system.
 
 
-### Starn is an MIT-licensed open source project.
+Starn is an MIT-licensed open source project.
 
 
 ## Getting Started
