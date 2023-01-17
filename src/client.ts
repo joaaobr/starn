@@ -29,7 +29,6 @@ export class Client {
 
 		this.connection.on('data', data => {
 			const messagesList = Client.data.toArray(data);
-			// messagesList.map(v => console.log(v))
 			for (let i = 0; i < messagesList.length - 1; i++) {
 				const message: any = Client.data.parse(messagesList[i]);
 
